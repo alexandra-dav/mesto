@@ -1,0 +1,29 @@
+.popup__text {
+    border: none;
+    border-bottom: 1px solid #000;
+    margin: 0;
+    margin-bottom: 30px;
+    padding: 0;
+    padding-bottom: 13px;
+    padding-top: 2px;
+    width: 358px;
+    height: 27px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.popup__text:focus-visible {
+    outline: 2px solid rgb(92, 174, 207);
+    border: none;
+}
+
+@media screen and (max-width: 767px) {
+    .popup__text {
+        width: 238px;
+        height: 27px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

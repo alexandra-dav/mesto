@@ -1,0 +1,13 @@
+.elements__favorit-active {
+    width: 22px;
+    height: 19px;
+    margin: 0;
+    margin-right: 15px;
+    padding: 0;
+    align-items: baseline;
+    background-image: url(../../../images/Union.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+    background-color: white;
+}
