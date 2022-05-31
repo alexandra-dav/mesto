@@ -23,6 +23,7 @@
 @import url(../blocks/elements/__name/elements__name.css);
 
 @import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__content/footer__content.css);
 
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__content/popup__content.css);
