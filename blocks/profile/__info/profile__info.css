@@ -1,6 +1,9 @@
 .profile__info {
     display: grid;
-    grid-template-columns: max-content 1fr;
+    grid-template-areas:
+    "name e_button"
+    "job job";
+    grid-template-columns: max-content 24px;
     grid-template-rows: auto;
     align-items: center;
     justify-items: left;

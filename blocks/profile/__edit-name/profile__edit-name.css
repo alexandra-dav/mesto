@@ -1,4 +1,5 @@
 .profile__edit-name {
+    grid-area: e_button;
     background-image: url(../../../images/Edit_Button.svg);
     background-size: cover;
     background-repeat: no-repeat;

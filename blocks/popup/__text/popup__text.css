@@ -7,7 +7,7 @@
     padding-bottom: 13px;
     padding-top: 2px;
     width: 358px;
-    height: 27px;
+    height: 12px;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -22,7 +22,6 @@
 @media screen and (max-width: 767px) {
     .popup__text {
         width: 238px;
-        height: 27px;
         font-size: 14px;
         line-height: 17px;
     }
