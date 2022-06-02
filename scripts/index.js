@@ -1,8 +1,8 @@
 let buttonEdit = document.querySelector('.profile__edit-name');
 let buttonClose = document.querySelector('.popup__close');
 let popupW = document.querySelector('.popup');
-let popupName = document.querySelector('.popup__text_name');
-let popupJob = document.querySelector('.popup__text_job');
+let popupName = document.querySelector('.popup__text_form_name');
+let popupJob = document.querySelector('.popup__text_form_job');
 let formElement = document.querySelector('form[name="popup-form"]');
 
 function OpenPopup() {
