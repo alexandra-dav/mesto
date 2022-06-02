@@ -3,7 +3,7 @@ let buttonClose = document.querySelector('.popup__close');
 let popupW = document.querySelector('.popup');
 let popupName = document.querySelector('.popup__text_name');
 let popupJob = document.querySelector('.popup__text_job');
-let formElement = document.querySelector('.popup-form');
+let formElement = document.querySelector('form[name="popup-form"]');
 console.log(formElement);
 
 function OpenPopup() {
