@@ -9,6 +9,7 @@
     text-align: center;
     background-color: black;
     padding: 0;
+    border: 0;
 }
 
 .popup__save:hover {
