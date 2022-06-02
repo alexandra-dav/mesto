@@ -4,9 +4,13 @@
     align-items: center;
     justify-content: center;
     margin: 0;
-    margin-top: 75px;
+    margin-top: 50px;
     padding: 0;
     row-gap: 20px;
     column-gap: 17px;
 }
-
+@media screen and (max-width: 425px){
+    .elements {
+        margin-top: 36px;
+    }
+}
