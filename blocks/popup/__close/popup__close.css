@@ -3,14 +3,13 @@
     background-image: url(../../../images/Close_Icon.svg);
     background-size: cover;
     background-repeat: no-repeat;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0);
     border: none;
     width: 32px;
     height: 32px;
     position: absolute;
     right: -40px;
-    top: -40px;
-    background-color: rgba(0, 0, 0, 0);
+    top: -40px;    
 }
 
 .popup__close:hover {
