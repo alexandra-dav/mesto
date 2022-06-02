@@ -6,6 +6,7 @@
     align-items: center;
     justify-items: left;
     gap: 30px;
+    margin-bottom: 50px;
 }
 
 @media screen and (max-width: 767px) {
@@ -13,5 +14,6 @@
         grid-template-columns: auto;
         justify-items: center;
         gap: 0;
+        margin-bottom: 36px;
     }
 }
