@@ -16,10 +16,10 @@
             <img src="https://images.unsplash.com/photo-1653934003352-660a5a93bcd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1964&q=80" alt="Аватар пользователя" class="profile__avatar">
             <div class="profile__info">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <button class="profile__edit-name" type="button"></button>
+                <button aria-label="edit-profile" class="profile__edit-name" type="button"></button>
                 <p class="profile__occupation">Исследователь океана</p>
             </div>
-            <button class="profile__add" type="button">&#9547;</button>
+            <button aria-label="add-content" class="profile__add" type="button">&#9547;</button>
         </section>
 
         <section class="elements" aria-label="Галлерея" id="elements">
@@ -27,54 +27,54 @@
                 <img src="./images/Mask_Group.jpg" alt="Карачаевская крепость">
                 <div class="elements__info">
                     <h2 class="elements__name">Карачаевская крепость</h2>
-                    <button name="favorit" id="favorit" class="elements__favorit" type="button"></button>
+                    <button aria-label="like" name="favorit" id="favorit" class="elements__favorit" type="button"></button>
                 </div>
             </article>
             <article class="elements__container">
                 <img src="./images/Mask_Group-1.jpg" alt="Гора Эльбрус">
                 <div class="elements__info">
                     <h2 class="elements__name">Гора Эльбрус</h2>
-                    <button name="favorit" id="favorit1" class="elements__favorit" type="button"></button>
+                    <button aria-label="like" name="favorit" id="favorit1" class="elements__favorit" type="button"></button>
                 </div>
             </article>
             <article class="elements__container">
                 <img src="./images/Mask_Group-2.jpg" alt="Домбай">
                 <div class="elements__info">
                     <h2 class="elements__name">Домбай</h2>
-                    <button name="favorit" id="favorit2" class="elements__favorit" type="button"></button>
+                    <button aria-label="like" name="favorit" id="favorit2" class="elements__favorit" type="button"></button>
                 </div>
             </article>
             <article class="elements__container">
                 <img src="./images/Mask_Group-3.jpg" alt="Карачаевская крепость">
                 <div class="elements__info">
                     <h2 class="elements__name">Карачаевск</h2>
-                    <button name="favorit" id="favorit3" class="elements__favorit" type="button"></button>
+                    <button aria-label="like" name="favorit" id="favorit3" class="elements__favorit" type="button"></button>
                 </div>
             </article>
             <article class="elements__container">
                 <img src="./images/Mask_Group-4.jpg" alt="Гора Эльбрус">
                 <div class="elements__info">
                     <h2 class="elements__name">Гора Эльбрус</h2>
-                    <button name="favorit" id="favorit4" class="elements__favorit" type="button"></button>
+                    <button aria-label="like" name="favorit" id="favorit4" class="elements__favorit" type="button"></button>
                 </div>
             </article>
             <article class="elements__container">
                 <img src="./images/Mask_Group-5.jpg" alt="Домбай">
                 <div class="elements__info">
                     <h2 class="elements__name">Домбай</h2>
-                    <button name="favorit" id="favorit5" class="elements__favorit" type="button"></button>
+                    <button aria-label="like" name="favorit" id="favorit5" class="elements__favorit" type="button"></button>
                 </div>
             </article>
         </section>
 
         <div class="popup">
             <div class="popup__content">
-                <button class="popup__close" type="button"></button>
+                <button aria-label="close" class="popup__close" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form name="popup-form">
                     <input type="text" name="popupName" class="popup__text popup__text_form_name" placeholder="Имя" value="">
                     <input type="text" name="popupJob" class="popup__text popup__text_form_job" placeholder="О себе" value="">
-                    <button class="popup__save" type="submit">Сохранить</button>
+                    <button aria-label="submit" class="popup__save" type="submit">Сохранить</button>
                 </form>
                 
             </div>
