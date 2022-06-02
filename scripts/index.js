@@ -19,10 +19,10 @@ function ClosePopup() {
 }
 
 /* Добавление модификатора при открытии попапа */
-buttonEdit.addEventListener('click', OpenPopup());
+buttonEdit.addEventListener('click', OpenPopup);
 
 /* Удаление модификатора при закрытии попапа различными способами */
-buttonClose.addEventListener('click', ClosePopup());
+buttonClose.addEventListener('click', ClosePopup);
 
 /* popupW.addEventListener('click', function(e) {
     if (e.target === e.currentTarget) {
