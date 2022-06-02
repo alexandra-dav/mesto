@@ -61,7 +61,7 @@ formElement.addEventListener('click', formSubmitHandler);
 
 
 /* Переключатель лайков */
-function favorits () {
+/* function favorits () {
     var header = document.getElementById("elements");
     var btns = header.getElementsByClassName("elements__favorit");
     for (var i = 0; i < btns.length; i++) {
@@ -72,6 +72,6 @@ function favorits () {
         });
     }
 }
-favorits();
+favorits(); */
 
 
