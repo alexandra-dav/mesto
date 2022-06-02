@@ -1,5 +1,5 @@
 .elements__container {
-    height: 361px;
+    min-height: 361px;
     background-color: white;
     border-radius: 10px;
     overflow: hidden;
