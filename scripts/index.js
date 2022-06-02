@@ -7,6 +7,11 @@ let formElement = document.querySelector('.popup__save');
 
 function OpenPopup() {
     popupW.classList.add('popup_opened');
+    /* Подтягивание значений полей в попап при открытии */
+    let profileName = document.querySelector('.profile__name');
+    let profileOccupation = document.querySelector('.profile__occupation');
+    popupName.value = profileName.textContent;
+    popupJob.value = profileOccupation.textContent;
 }
 
 function ClosePopup() {
@@ -15,12 +20,7 @@ function ClosePopup() {
 
 /* Добавление модификатора при открытии попапа */
 buttonEdit.addEventListener('click', function() {
-    OpenPopup();
-    /* Подтягивание значений полей в попап при открытии */
-    let profileName = document.querySelector('.profile__name');
-    let profileOccupation = document.querySelector('.profile__occupation');
-    popupName.value = profileName.textContent;
-    popupJob.value = profileOccupation.textContent;
+    OpenPopup();    
 });
 
 /* Удаление модификатора при закрытии попапа различными способами */
@@ -28,17 +28,17 @@ buttonClose.addEventListener('click', function() {
     ClosePopup();
 });
 
-popupW.addEventListener('click', function(e) {
+/* popupW.addEventListener('click', function(e) {
     if (e.target === e.currentTarget) {
         popupW.classList.remove('popup_opened');
     }
-});
+}); */
 
-document.addEventListener('keydown', function(e){
+/* document.addEventListener('keydown', function(e){
     if (e.code === "Escape") {
         popupW.classList.remove('popup_opened');
     }
-});
+}); */
 
 /* Работа с изменением данных формы */
 function formSubmitHandler (evt) {
@@ -67,7 +67,7 @@ formElement.addEventListener('click', formSubmitHandler);
     for (var i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", function() {
             if(this.className == "elements__favorit"){
-                this.className = "elements__favorit-active";
+                this.className = "elements__favorit elements__favorit_active";
             } else this.className = "elements__favorit";
         });
     }
