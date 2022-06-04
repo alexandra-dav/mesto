@@ -1,9 +1,9 @@
 .popup__text_form_job {
-    margin-bottom: 48px;    
+    /* margin-bottom: 48px;  */   
 }
 
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 767px) {
     .popup__text_form_job {
         margin-bottom: 45px;
     }
-}
+} */

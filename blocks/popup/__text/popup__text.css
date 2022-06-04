@@ -9,6 +9,17 @@
     line-height: 17px;
     outline: 0;
     padding: 2px 0 13px;
+    /* из-за padding-top  30px - 2px = 28px */
+    margin: 0 0 28px;
+}
+
+/* .popup__text:first-of-type {
+    margin: 0 0 30px;
+} */
+
+.popup__text:last-of-type {
+    /* из-за padding-top  48px - 2px = 46px */
+    margin-bottom: 46px;
 }
 
 .popup__text:focus-visible {
@@ -19,5 +30,8 @@
 @media screen and (max-width: 767px) {
     .popup__text {
         width: 238px;
+    }
+    .popup__text:last-of-type {
+        margin-bottom: 43px;
     }
 }
