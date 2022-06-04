@@ -8,9 +8,7 @@
     font-size: 14px;
     line-height: 17px;
     outline: 0;
-    padding: 0;
-    padding-bottom: 13px;
-    padding-top: 2px;
+    padding: 2px 0 13px;
 }
 
 .popup__text:focus-visible {
