@@ -67,18 +67,30 @@
             </article>
         </section>
 
-        <div class="popup">
+        <div class="popup" id="edit_profile">
             <div class="popup__content">
-                <button aria-label="close" class="popup__close" type="button"></button>
+                <button aria-label="close" class="popup__close popup__close_window_profile" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form name="popup-form">
                     <input type="text" name="popupName" class="popup__text popup__text_form_name" placeholder="Имя" value="">
                     <input type="text" name="popupJob" class="popup__text popup__text_form_job" placeholder="О себе" value="">
                     <button aria-label="submit" class="popup__save" type="submit">Сохранить</button>
-                </form>
-                
+                </form>                
             </div>
         </div>
+
+        <div class="popup" id="add_elements">
+            <div class="popup__content">
+                <button aria-label="close" class="popup__close popup__close_window_elements" type="button"></button>
+                <h2 class="popup__title">Новое место</h2>
+                <form name="popup-form">
+                    <input type="text" name="popupPlase" class="popup__text popup__text_form_plase" placeholder="Название" value="">
+                    <input type="text" name="popupLink" class="popup__text popup__text_form_link" placeholder="Ссылка на картинку" value="">
+                    <button aria-label="submit" class="popup__save" type="submit">Создать</button>
+                </form>                
+            </div>
+        </div>
+
     </main>
 
     <footer class="footer">

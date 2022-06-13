@@ -1,6 +1,9 @@
 let buttonEdit = document.querySelector('.profile__edit-name');
-let buttonClose = document.querySelector('.popup__close');
-let popupW = document.querySelector('.popup');
+let buttonAddPlace = document.querySelector('.profile__add');
+let buttonCloseProfile = document.querySelector('.popup__close_window_profile');
+let buttonCloseAddElements = document.querySelector('.popup__close_window_elements');
+let popupWProfile = document.querySelector('#edit_profile');
+let popupWAddElements = document.querySelector('#add_elements');
 let popupName = document.querySelector('.popup__text_form_name');
 let popupJob = document.querySelector('.popup__text_form_job');
 let formElement = document.querySelector('form[name="popup-form"]');
@@ -34,8 +37,8 @@ const initialCards = [
     }
   ];
 
-function OpenPopup() {
-    popupW.classList.add('popup_opened');
+function OpenPopup(thisPopup) {
+    thisPopup.classList.add('popup_opened');
     /* Подтягивание значений полей в попап при открытии */
     let profileName = document.querySelector('.profile__name');
     let profileOccupation = document.querySelector('.profile__occupation');
@@ -43,15 +46,11 @@ function OpenPopup() {
     popupJob.value = profileOccupation.textContent;
 }
 
-function ClosePopup() {
-    popupW.classList.remove('popup_opened');
+function ClosePopup(thisPopup) {
+  thisPopup.classList.remove('popup_opened');
 }
 
-/* Добавление модификатора при открытии попапа */
-buttonEdit.addEventListener('click', OpenPopup);
 
-/* Удаление модификатора при закрытии попапа различными способами */
-buttonClose.addEventListener('click', ClosePopup);
 
 /* popupW.addEventListener('click', function(e) {
     if (e.target === e.currentTarget) {
@@ -64,6 +63,21 @@ buttonClose.addEventListener('click', ClosePopup);
         popupW.classList.remove('popup_opened');
     }
 }); */
+
+/* Переключатель лайков */
+/* function favorits () {
+    var header = document.getElementById("elements");
+    var btns = header.getElementsByClassName("elements__favorit");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function() {
+            if(this.className == "elements__favorit"){
+                this.className = "elements__favorit elements__favorit_active";
+            } else this.className = "elements__favorit";
+        });
+    }
+}
+favorits(); */
+
 
 /* Работа с изменением данных формы */
 function formSubmitHandler (evt) {
@@ -84,19 +98,14 @@ function formSubmitHandler (evt) {
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler);
 
+/* Добавление модификатора при открытии попапа */
+buttonEdit.addEventListener('click', () => {OpenPopup(popupWProfile)});
+buttonAddPlace.addEventListener('click', () => {OpenPopup(popupWAddElements)});
 
-/* Переключатель лайков */
-/* function favorits () {
-    var header = document.getElementById("elements");
-    var btns = header.getElementsByClassName("elements__favorit");
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function() {
-            if(this.className == "elements__favorit"){
-                this.className = "elements__favorit elements__favorit_active";
-            } else this.className = "elements__favorit";
-        });
-    }
-}
-favorits(); */
+/* Удаление модификатора при закрытии попапа различными способами */
+buttonCloseProfile.addEventListener('click', () => {ClosePopup(popupWProfile)});
+buttonCloseAddElements.addEventListener('click', () => {ClosePopup(popupWAddElements)});
+
+
 
 
