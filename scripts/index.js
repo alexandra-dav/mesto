@@ -50,22 +50,8 @@ function ClosePopup(thisPopup) {
   thisPopup.classList.remove('popup_opened');
 }
 
-
-
-/* popupW.addEventListener('click', function(e) {
-    if (e.target === e.currentTarget) {
-        popupW.classList.remove('popup_opened');
-    }
-}); */
-
-/* document.addEventListener('keydown', function(e){
-    if (e.code === "Escape") {
-        popupW.classList.remove('popup_opened');
-    }
-}); */
-
 /* Переключатель лайков */
-/* function favorits () {
+function favorits () {
     var header = document.getElementById("elements");
     var btns = header.getElementsByClassName("elements__favorit");
     for (var i = 0; i < btns.length; i++) {
@@ -76,7 +62,7 @@ function ClosePopup(thisPopup) {
         });
     }
 }
-favorits(); */
+favorits();
 
 
 /* Работа с изменением данных формы */
@@ -106,6 +92,23 @@ buttonAddPlace.addEventListener('click', () => {OpenPopup(popupWAddElements)});
 buttonCloseProfile.addEventListener('click', () => {ClosePopup(popupWProfile)});
 buttonCloseAddElements.addEventListener('click', () => {ClosePopup(popupWAddElements)});
 
+/* popupW.addEventListener('click', function(e) {
+    if (e.target === e.currentTarget) {
+        popupW.classList.remove('popup_opened');
+    }
+}); */
+
+/* popupW.addEventListener('click', function(e) {
+    if (e.target === e.currentTarget) {
+        popupW.classList.remove('popup_opened');
+    }
+}); */
+
+/* document.addEventListener('keydown', function(e){
+    if (e.code === "Escape") {
+        popupW.classList.remove('popup_opened');
+    }
+}); */
 
 
 
