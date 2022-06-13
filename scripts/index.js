@@ -62,7 +62,6 @@ function favorits () {
         });
     }
 }
-favorits();
 
 
 /* Работа с изменением данных формы */
@@ -110,5 +109,6 @@ buttonCloseAddElements.addEventListener('click', () => {ClosePopup(popupWAddElem
     }
 }); */
 
-
+/* Вызов функции с лайками */
+favorits();
 
