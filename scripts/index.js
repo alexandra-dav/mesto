@@ -43,7 +43,7 @@ function initialFirstCards() {
   for(let i = 0; i < initialCards.length; i++){
     SectionElements.insertAdjacentHTML('beforeend', `
     <article class="elements__container">
-      <img src="${initialCards[i].link}" alt="${initialCards[i].name}">
+      <img src="${initialCards[i].link}" alt="${initialCards[i].name}" class="elements__image">
       <div class="elements__info">
         <h2 class="elements__name">${initialCards[i].name}</h2>
         <button aria-label="like" name="favorit" class="elements__favorit" type="button"></button>
