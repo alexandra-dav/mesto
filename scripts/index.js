@@ -46,7 +46,7 @@ function initialFirstCards() {
       <img src="${initialCards[i].link}" alt="${initialCards[i].name}" class="elements__image">
       <div class="elements__info">
         <h2 class="elements__name">${initialCards[i].name}</h2>
-        <button aria-label="like" name="favorit" class="elements__favorit" type="button"></button>
+        <button aria-label="like" name="favorit" id="favorit${i}" class="elements__favorit" type="button"></button>
       </div>
     </article>
     `);
@@ -78,7 +78,6 @@ function favorits () {
         });
     }
 }
-
 
 /* Работа с изменением данных формы */
 function formSubmitHandler (evt) {
@@ -125,9 +124,8 @@ buttonCloseAddElements.addEventListener('click', () => {ClosePopup(popupWAddElem
     }
 }); */
 
-/* Вызов функции с лайками */
-favorits();
-
 // Вызов функции дефолтного автозаполнения карточек
 initialFirstCards();
 
+/* Вызов функции с лайками */
+favorits();
