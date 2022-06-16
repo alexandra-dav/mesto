@@ -37,6 +37,22 @@ const initialCards = [
     }
   ];
 
+// Функция, которая при обновлении страницы добавляет карточки
+function initialFirstCards() {
+  const SectionElements = document.querySelector('.elements');
+  for(let i = 0; i < initialCards.length; i++){
+    SectionElements.insertAdjacentHTML('beforeend', `
+    <article class="elements__container">
+      <img src="${initialCards[i].link}" alt="${initialCards[i].name}">
+      <div class="elements__info">
+        <h2 class="elements__name">${initialCards[i].name}</h2>
+        <button aria-label="like" name="favorit" class="elements__favorit" type="button"></button>
+      </div>
+    </article>
+    `);
+  }
+}
+
 function OpenPopup(thisPopup) {
     thisPopup.classList.add('popup_opened');
     /* Подтягивание значений полей в попап при открытии */
@@ -111,4 +127,7 @@ buttonCloseAddElements.addEventListener('click', () => {ClosePopup(popupWAddElem
 
 /* Вызов функции с лайками */
 favorits();
+
+// Вызов функции дефолтного автозаполнения карточек
+initialFirstCards();
 
