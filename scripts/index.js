@@ -2,12 +2,14 @@ const buttonEdit = document.querySelector('.profile__edit-name');
 const buttonAddPlace = document.querySelector('.profile__add');
 const buttonCloseProfile = document.querySelector('.popup__close_window_profile');
 const buttonCloseAddElements = document.querySelector('.popup__close_window_elements');
+const buttonClosePhoto = document.querySelector('.popup__close_window_photo');
 const popupWProfile = document.querySelector('#edit_profile');
+const popupWPhoto = document.querySelector('#view_photo');
 const popupWAddElements = document.querySelector('#add_elements');
-let popupName = popupWProfile.querySelector('.popup__text_form_name');
-let popupJob = popupWProfile.querySelector('.popup__text_form_job');
-let formElement1 = popupWProfile.querySelector('form[name="popup-form"]');
-let formElement2 = popupWAddElements.querySelector('form[name="popup-form"]');
+const popupName = popupWProfile.querySelector('.popup__text_form_name');
+const popupJob = popupWProfile.querySelector('.popup__text_form_job');
+const formElement1 = popupWProfile.querySelector('form[name="popup-form"]');
+const formElement2 = popupWAddElements.querySelector('form[name="popup-form"]');
 const ElementsContainer = document.querySelector('.elements');
 
 /* При загрузке на странице должно быть 6 карточек, 
@@ -64,17 +66,21 @@ function favorit(e) {
   }else eventTarget.className = 'elements__favorit elements__favorit_active';
 }
 
+// Функция просмотра фото карточки
+function ViewPhto(name, link){
+  const ChangeMyName = popupWPhoto.querySelector('.photo__caption');
+  const ChangeMyLink = popupWPhoto.querySelector('.photo__image');
+  ChangeMyName.textContent = name;
+  ChangeMyLink.src = link;
+  ChangeMyLink.alt = name;
+  popupWPhoto.classList.add('popup_opened');
+}
+
 // Функция удаления карточки
 function removeCard(e) {
   const eventPath1 = e.path[1];
   eventPath1.remove();
 }
-
-// Функция просмотра фото карточки
-/* const viewPhoto = ElementsContainer.querySelector('elements__image');
-viewPhoto.addEventListener('click', (e) => {
-
-}); */
 
 // Создание новой карточки
 function CreateElementPlase(name, link) {
@@ -93,6 +99,14 @@ function CreateElementPlase(name, link) {
   // Удаление карточки
   const DeleteBtn = ElementsContainer.querySelector('.elements__delete');
   DeleteBtn.addEventListener('click', removeCard);
+
+  // Просмотр фото карточки
+  const ChosePhoto = ElementsContainer.querySelector('.elements__image');
+  ChosePhoto.addEventListener('click', function(e) {
+    const PhotoName = e.path[1].innerText;
+    const PhotoImage = e.target.currentSrc;
+    ViewPhto(PhotoName, PhotoImage);
+  });
 
   ClosePopup(popupWAddElements);
 }
@@ -142,6 +156,7 @@ buttonAddPlace.addEventListener('click', OpenPopupPlase);
 /* Удаление модификатора при закрытии попапа различными способами */
 buttonCloseProfile.addEventListener('click', () => {ClosePopup(popupWProfile)});
 buttonCloseAddElements.addEventListener('click', () => {ClosePopup(popupWAddElements)});
+buttonClosePhoto.addEventListener('click', () => {ClosePopup(popupWPhoto)});
 
 /* popupW.addEventListener('click', function(e) {
     if (e.target === e.currentTarget) {
