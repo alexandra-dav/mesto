@@ -4,11 +4,12 @@ const buttonCloseProfile = document.querySelector('.popup__close_window_profile'
 const buttonCloseAddElements = document.querySelector('.popup__close_window_elements');
 const popupWProfile = document.querySelector('#edit_profile');
 const popupWAddElements = document.querySelector('#add_elements');
-let popupName = popupWProfile.querySelector('.popup__text_form_name');
-let popupJob = popupWProfile.querySelector('.popup__text_form_job');
-let formElement1 = popupWProfile.querySelector('form[name="popup-form"]');
-let formElement2 = popupWAddElements.querySelector('form[name="popup-form"]');
-let ElementsContainer = document.querySelector('.elements');
+const popupName = popupWProfile.querySelector('.popup__text_form_name');
+const popupJob = popupWProfile.querySelector('.popup__text_form_job');
+const formElement1 = popupWProfile.querySelector('form[name="popup-form"]');
+const formElement2 = popupWAddElements.querySelector('form[name="popup-form"]');
+const ElementsContainer = document.querySelector('.elements');
+const DeleteBtn = ElementsContainer.querySelector('.elements__delete');
 
 
 /* При загрузке на странице должно быть 6 карточек, 
@@ -57,7 +58,7 @@ function ClosePopup(thisPopup) {
   thisPopup.classList.remove('popup_opened');
 }
 
-function CreateElementPlase (name, link) {
+function CreateElementPlase(name, link) {
   const plaseTemplate = document.querySelector('#plase-template').content;
   const ElementContainer = plaseTemplate.querySelector('.elements__container').cloneNode(true);
 
@@ -78,7 +79,7 @@ function CreateElementPlase (name, link) {
 }
 
 /* Работа с изменением данных формы */
-function AddElementPlase (evt) {
+function AddElementPlase(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Берем данные из попапа
   const PlaceName = popupWAddElements.querySelector('.popup__text_form_plase');
@@ -90,7 +91,7 @@ function AddElementPlase (evt) {
   PlaceLink.value = '';
 }
 
-function formSubmitHandler (evt) {
+function formSubmitHandler(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Получите значение полей jobInput и nameInput из свойства value
   const jobInput = popupJob.value;
@@ -103,6 +104,13 @@ function formSubmitHandler (evt) {
   docJob.textContent = jobInput;
   ClosePopup(popupWProfile);
 }
+
+// Удаление карточки
+DeleteBtn.addEventListener('click', function(e) {
+  console.log(e);
+  const eventPath1 = e.path[1];
+  eventPath1.remove();
+});
 
 // Создаем дефолтное наполнение
 for(let i = 0; i < initialCards.length; i++) {
@@ -138,20 +146,4 @@ buttonCloseAddElements.addEventListener('click', () => {ClosePopup(popupWAddElem
     if (e.code === "Escape") {
         popupW.classList.remove('popup_opened');
     }
-}); */
-
-// Удаление карточки
-/* let resetButton = ElementsContainer.getElementById("elements__container");
-console.log(description);
-description.addEventListener('click', function () {
-  description.remove();
-});
-
-resetButton.addEventListener('click', function () {
-  const songs = document.querySelectorAll('.song');
-  for (let i = 0; i < songs.length; i++) {
-    songs[i].remove();
-  }
-  renderNoSongs();
-  // for ...
 }); */
