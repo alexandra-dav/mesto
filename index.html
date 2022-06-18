@@ -30,7 +30,7 @@
             <div class="popup__content">
                 <button aria-label="close" class="popup__close popup__close_window_profile" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form name="popup-form1">
+                <form name="popup-form">
                     <input type="text" name="popupName" class="popup__text popup__text_form_name" placeholder="Имя" value="">
                     <input type="text" name="popupJob" class="popup__text popup__text_form_job" placeholder="О себе" value="">
                     <button aria-label="submit" class="popup__save" type="submit">Сохранить</button>
@@ -42,7 +42,7 @@
             <div class="popup__content">
                 <button aria-label="close" class="popup__close popup__close_window_elements" type="button"></button>
                 <h2 class="popup__title">Новое место</h2>
-                <form name="popup-form2">
+                <form name="popup-form">
                     <input type="text" name="popupPlase" class="popup__text popup__text_form_plase" placeholder="Название" value="">
                     <input type="text" name="popupLink" class="popup__text popup__text_form_link" placeholder="Ссылка на картинку" value="">
                     <button aria-label="submit" class="popup__save" type="submit">Создать</button>
@@ -55,7 +55,7 @@
     <footer class="footer">
         <p class="footer__content">&copy; 2022 Mesto Russia</p> 
     </footer>
-    
+
     <template id="plase-template">
         <article class="elements__container">
             <img class="elements__image">
@@ -63,7 +63,7 @@
               <h2 class="elements__name"></h2>
               <button aria-label="like" name="favorit" id="favorit" class="elements__favorit" type="button"></button>
             </div>
-            <button aria-label="delete" name="button-del" class="elements__delete" type="button"></button>
+            <button aria-label="delete" name="button-del" id="button-del" class="elements__delete" type="button"></button>
         </article>
     </template>
 
