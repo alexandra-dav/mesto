@@ -4,13 +4,11 @@ const buttonCloseProfile = document.querySelector('.popup__close_window_profile'
 const buttonCloseAddElements = document.querySelector('.popup__close_window_elements');
 const popupWProfile = document.querySelector('#edit_profile');
 const popupWAddElements = document.querySelector('#add_elements');
-const popupName = popupWProfile.querySelector('.popup__text_form_name');
-const popupJob = popupWProfile.querySelector('.popup__text_form_job');
-const formElement1 = popupWProfile.querySelector('form[name="popup-form"]');
-const formElement2 = popupWAddElements.querySelector('form[name="popup-form"]');
+let popupName = popupWProfile.querySelector('.popup__text_form_name');
+let popupJob = popupWProfile.querySelector('.popup__text_form_job');
+let formElement1 = popupWProfile.querySelector('form[name="popup-form"]');
+let formElement2 = popupWAddElements.querySelector('form[name="popup-form"]');
 const ElementsContainer = document.querySelector('.elements');
-const DeleteBtn = ElementsContainer.querySelector('.elements__delete');
-
 
 /* При загрузке на странице должно быть 6 карточек, 
 которые добавит JavaScript.  */
@@ -58,6 +56,20 @@ function ClosePopup(thisPopup) {
   thisPopup.classList.remove('popup_opened');
 }
 
+// Функция добавления-удаления класса у сердечка
+function favorit(e) {
+  const eventTarget = e.target;
+  if (eventTarget.className === 'elements__favorit elements__favorit_active'){
+    eventTarget.className = 'elements__favorit';
+  }else eventTarget.className = 'elements__favorit elements__favorit_active';
+}
+
+// Функция удаления карточки
+function removeCard(e) {
+  const eventPath1 = e.path[1];
+  eventPath1.remove();
+}
+
 function CreateElementPlase(name, link) {
   const plaseTemplate = document.querySelector('#plase-template').content;
   const ElementContainer = plaseTemplate.querySelector('.elements__container').cloneNode(true);
@@ -69,12 +81,12 @@ function CreateElementPlase(name, link) {
   ElementsContainer.prepend(ElementContainer);
 
   const LikeBtn = ElementsContainer.querySelector('.elements__favorit');
-  LikeBtn.addEventListener('click', function(e) {
-    const eventTarget = e.target;
-    if (eventTarget.className === 'elements__favorit elements__favorit_active'){
-      eventTarget.className = 'elements__favorit';
-    }else eventTarget.className = 'elements__favorit elements__favorit_active';
-  });
+  LikeBtn.addEventListener('click', favorit);
+
+  // Удаление карточки
+  const DeleteBtn = ElementsContainer.querySelector('.elements__delete');
+  DeleteBtn.addEventListener('click', removeCard);
+
   ClosePopup(popupWAddElements);
 }
 
@@ -104,13 +116,6 @@ function formSubmitHandler(evt) {
   docJob.textContent = jobInput;
   ClosePopup(popupWProfile);
 }
-
-// Удаление карточки
-DeleteBtn.addEventListener('click', function(e) {
-  console.log(e);
-  const eventPath1 = e.path[1];
-  eventPath1.remove();
-});
 
 // Создаем дефолтное наполнение
 for(let i = 0; i < initialCards.length; i++) {
