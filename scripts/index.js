@@ -70,6 +70,13 @@ function removeCard(e) {
   eventPath1.remove();
 }
 
+// Функция просмотра фото карточки
+/* const viewPhoto = ElementsContainer.querySelector('elements__image');
+viewPhoto.addEventListener('click', (e) => {
+
+}); */
+
+// Создание новой карточки
 function CreateElementPlase(name, link) {
   const plaseTemplate = document.querySelector('#plase-template').content;
   const ElementContainer = plaseTemplate.querySelector('.elements__container').cloneNode(true);
@@ -90,7 +97,7 @@ function CreateElementPlase(name, link) {
   ClosePopup(popupWAddElements);
 }
 
-/* Работа с изменением данных формы */
+// Добавление новой карточки
 function AddElementPlase(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Берем данные из попапа
@@ -103,6 +110,7 @@ function AddElementPlase(evt) {
   PlaceLink.value = '';
 }
 
+// Изменение данных в профиле
 function formSubmitHandler(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Получите значение полей jobInput и nameInput из свойства value
