@@ -74,7 +74,7 @@ const clikOnHeart = (e) => {
 }
 
 // Функция просмотра фото карточки
-const ViewPhto = (name, link) => {
+const viewPhto = (name, link) => {
   changeMyName.textContent = name;
   changeMyLink.src = link;
   changeMyLink.alt = name;
@@ -108,14 +108,14 @@ function createElementPlase(name, link) {
   // Просмотр фото карточки
   const chosePhoto = elementsContainer.querySelector('.elements__image');
   chosePhoto.addEventListener('click', () => {
-    ViewPhto(name, link);
+    viewPhto(name, link);
   });
 
   closePopup(popupWAddElements);
 }
 
 // Добавление новой карточки
-function AddElementPlase(evt) {
+function addElementPlase(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Берем данные из попапа
   const placeName = popupWAddElements.querySelector('.popup__text_form_plase');
@@ -151,7 +151,7 @@ buttonAddPlace.addEventListener('click', () => {openPopup(popupWAddElements)});
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElementProfile.addEventListener('submit', formSubmitHandler);
-formElementPlace.addEventListener('submit', AddElementPlase);
+formElementPlace.addEventListener('submit', addElementPlase);
 
 /* Удаление модификатора при закрытии попапа различными способами */
 buttonCloseProfile.addEventListener('click', () => {closePopup(popupWProfile)});
