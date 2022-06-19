@@ -1,16 +1,26 @@
-const buttonEdit = document.querySelector('.profile__edit-name');
-const buttonAddPlace = document.querySelector('.profile__add');
-const buttonCloseProfile = document.querySelector('.popup__close_window_profile');
-const buttonCloseAddElements = document.querySelector('.popup__close_window_elements');
-const buttonClosePhoto = document.querySelector('.popup__close_window_photo');
 const popupWProfile = document.querySelector('#edit_profile');
-const popupWPhoto = document.querySelector('#view_photo');
-const popupWAddElements = document.querySelector('#add_elements');
+const buttonEditPropile = document.querySelector('.profile__edit-name');
+const profileName = document.querySelector('.profile__name');
+const profileOccupation = document.querySelector('.profile__occupation');
 const popupName = popupWProfile.querySelector('.popup__text_form_name');
 const popupJob = popupWProfile.querySelector('.popup__text_form_job');
-const formElement1 = popupWProfile.querySelector('form[name="popup-form"]');
-const formElement2 = popupWAddElements.querySelector('form[name="popup-form"]');
-const ElementsContainer = document.querySelector('.elements');
+const buttonCloseProfile = document.querySelector('.popup__close_window_profile');
+const formElementProfile = popupWProfile.querySelector('form[name="popup-form"]');
+// Выберите элементы, куда должны быть вставлены значения полей
+const docName = document.querySelector('.profile__name');
+const docJob = document.querySelector('.profile__occupation');
+
+const elementsContainer = document.querySelector('.elements');
+const plaseTemplate = document.querySelector('#plase-template').content;
+const popupWAddElements = document.querySelector('#add_elements');
+const buttonAddPlace = document.querySelector('.profile__add');
+const buttonCloseAddElements = document.querySelector('.popup__close_window_elements');
+const formElementPlace = popupWAddElements.querySelector('form[name="popup-form"]');
+
+const popupWPhoto = document.querySelector('#view_photo');
+const changeMyName = popupWPhoto.querySelector('.photo__caption');
+const changeMyLink = popupWPhoto.querySelector('.photo__image');
+const buttonClosePhoto = document.querySelector('.popup__close_window_photo');
 
 /* При загрузке на странице должно быть 6 карточек, 
 которые добавит JavaScript.  */
@@ -41,87 +51,80 @@ const initialCards = [
     }
   ];
 
-function OpenPopupProfile() {
-  popupWProfile.classList.add('popup_opened');
-  /* Подтягивание значений полей в попап при открытии */
-  let profileName = document.querySelector('.profile__name');
-  let profileOccupation = document.querySelector('.profile__occupation');
+
+// Открыть попап
+function openPopup(e) {
+  e.classList.add('popup_opened');
+}
+// Подтягивание значений полей в попап при открытии
+function addDataProfile() { 
   popupName.value = profileName.textContent;
   popupJob.value = profileOccupation.textContent;
 }
 
-function OpenPopupPlase() {
-  popupWAddElements.classList.add('popup_opened');
-}
-
-function ClosePopup(thisPopup) {
+// Закрыть попап
+function closePopup(thisPopup) {
   thisPopup.classList.remove('popup_opened');
 }
 
 // Функция добавления-удаления класса у сердечка
-function favorit(e) {
+const clikOnHeart = (e) => {
   const eventTarget = e.target;
-  if (eventTarget.className === 'elements__favorit elements__favorit_active'){
-    eventTarget.className = 'elements__favorit';
-  }else eventTarget.className = 'elements__favorit elements__favorit_active';
+  eventTarget.classList.toggle('elements__favorit_active');
 }
 
 // Функция просмотра фото карточки
-function ViewPhto(name, link){
-  const ChangeMyName = popupWPhoto.querySelector('.photo__caption');
-  const ChangeMyLink = popupWPhoto.querySelector('.photo__image');
-  ChangeMyName.textContent = name;
-  ChangeMyLink.src = link;
-  ChangeMyLink.alt = name;
+const ViewPhto = (name, link) => {
+  changeMyName.textContent = name;
+  changeMyLink.src = link;
+  changeMyLink.alt = name;
   popupWPhoto.classList.add('popup_opened');
 }
 
 // Функция удаления карточки
 function removeCard(e) {
-  const eventPath1 = e.path[1];
-  eventPath1.remove();
+  const thisCard = e.target;
+  thisCard.closest('.elements__container').remove();
 }
 
 // Создание новой карточки
-function CreateElementPlase(name, link) {
-  const plaseTemplate = document.querySelector('#plase-template').content;
-  const ElementContainer = plaseTemplate.querySelector('.elements__container').cloneNode(true);
+function createElementPlase(name, link) {
+  const elementContainer = plaseTemplate.querySelector('.elements__container').cloneNode(true);
 
-  ElementContainer.querySelector('.elements__name').textContent = name;
-  ElementContainer.querySelector('.elements__image').src = link;
-  ElementContainer.querySelector('.elements__image').alt = name;
+  elementContainer.querySelector('.elements__name').textContent = name;
+  const thisContainerLink = elementContainer.querySelector('.elements__image') 
+  thisContainerLink.src = link;
+  thisContainerLink.alt = name;
 
-  ElementsContainer.prepend(ElementContainer);
+  elementsContainer.prepend(elementContainer);
 
-  const LikeBtn = ElementsContainer.querySelector('.elements__favorit');
-  LikeBtn.addEventListener('click', favorit);
+  const likeBtn = elementsContainer.querySelector('.elements__favorit');
+  likeBtn.addEventListener('click', clikOnHeart);
 
   // Удаление карточки
-  const DeleteBtn = ElementsContainer.querySelector('.elements__delete');
-  DeleteBtn.addEventListener('click', removeCard);
+  const deleteBtn = elementsContainer.querySelector('.elements__delete');
+  deleteBtn.addEventListener('click', removeCard);
 
   // Просмотр фото карточки
-  const ChosePhoto = ElementsContainer.querySelector('.elements__image');
-  ChosePhoto.addEventListener('click', function(e) {
-    const PhotoName = e.path[1].innerText;
-    const PhotoImage = e.target.currentSrc;
-    ViewPhto(PhotoName, PhotoImage);
+  const chosePhoto = elementsContainer.querySelector('.elements__image');
+  chosePhoto.addEventListener('click', () => {
+    ViewPhto(name, link);
   });
 
-  ClosePopup(popupWAddElements);
+  closePopup(popupWAddElements);
 }
 
 // Добавление новой карточки
 function AddElementPlase(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Берем данные из попапа
-  const PlaceName = popupWAddElements.querySelector('.popup__text_form_plase');
-  const PlaceLink = popupWAddElements.querySelector('.popup__text_form_link');
+  const placeName = popupWAddElements.querySelector('.popup__text_form_plase');
+  const placeLink = popupWAddElements.querySelector('.popup__text_form_link');
   
-  CreateElementPlase(PlaceName.value, PlaceLink.value);
+  createElementPlase(placeName.value, placeLink.value);
 
-  PlaceName.value = '';
-  PlaceLink.value = '';
+  placeName.value = '';
+  placeLink.value = '';
 }
 
 // Изменение данных в профиле
@@ -130,33 +133,30 @@ function formSubmitHandler(evt) {
   // Получите значение полей jobInput и nameInput из свойства value
   const jobInput = popupJob.value;
   const nameInput = popupName.value;
-  // Выберите элементы, куда должны быть вставлены значения полей
-  const docName = document.querySelector('.profile__name');
-  const docJob = document.querySelector('.profile__occupation');
   // Вставьте новые значения с помощью textContent
   docName.textContent = nameInput;
   docJob.textContent = jobInput;
-  ClosePopup(popupWProfile);
+  closePopup(popupWProfile);
 }
 
 // Создаем дефолтное наполнение
 for(let i = 0; i < initialCards.length; i++) {
-  CreateElementPlase(initialCards[i].name, initialCards[i].link);
+  createElementPlase(initialCards[i].name, initialCards[i].link);
 }
+
+/* Добавление модификатора при открытии попапа */
+buttonEditPropile.addEventListener('click', () => {openPopup(popupWProfile); addDataProfile()});
+buttonAddPlace.addEventListener('click', () => {openPopup(popupWAddElements)});
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElement1.addEventListener('submit', formSubmitHandler);
-formElement2.addEventListener('submit', AddElementPlase);
-
-/* Добавление модификатора при открытии попапа */
-buttonEdit.addEventListener('click', OpenPopupProfile);
-buttonAddPlace.addEventListener('click', OpenPopupPlase);
+formElementProfile.addEventListener('submit', formSubmitHandler);
+formElementPlace.addEventListener('submit', AddElementPlase);
 
 /* Удаление модификатора при закрытии попапа различными способами */
-buttonCloseProfile.addEventListener('click', () => {ClosePopup(popupWProfile)});
-buttonCloseAddElements.addEventListener('click', () => {ClosePopup(popupWAddElements)});
-buttonClosePhoto.addEventListener('click', () => {ClosePopup(popupWPhoto)});
+buttonCloseProfile.addEventListener('click', () => {closePopup(popupWProfile)});
+buttonCloseAddElements.addEventListener('click', () => {closePopup(popupWAddElements)});
+buttonClosePhoto.addEventListener('click', () => {closePopup(popupWPhoto)});
 
 /* popupW.addEventListener('click', function(e) {
     if (e.target === e.currentTarget) {
