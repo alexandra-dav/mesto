@@ -59,6 +59,12 @@ const initialCards = [
 function openPopup(e) {
   e.classList.add('popup_opened');
 }
+
+// Затемнение фона при открытии фото
+const openPhoto = (e) => {
+  e.classList.add('photo_opened');
+}
+
 // Подтягивание значений полей в попап при открытии
 function addDataProfile() { 
   popupName.value = profileName.textContent;
@@ -82,6 +88,7 @@ const viewPhto = (name, link) => {
   changeMyLink.src = link;
   changeMyLink.alt = name;
   openPopup(popupWPhoto);
+  openPhoto(popupWPhoto);
 }
 
 // Функция удаления карточки
