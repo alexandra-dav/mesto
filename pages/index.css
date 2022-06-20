@@ -46,3 +46,4 @@
 @import url(../blocks/photo/__image/photo__image.css);
 @import url(../blocks/photo/__figure/photo__figure.css);
 @import url(../blocks/photo/__caption/photo__caption.css);
+@import url(../blocks/photo/_opened/photo_opened.css);
