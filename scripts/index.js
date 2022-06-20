@@ -16,6 +16,9 @@ const popupWAddElements = document.querySelector('#add_elements');
 const buttonAddPlace = document.querySelector('.profile__add');
 const buttonCloseAddElements = document.querySelector('.popup__close_window_elements');
 const formElementPlace = popupWAddElements.querySelector('form[name="popup-form"]');
+// Берем данные из попапа
+const placeName = popupWAddElements.querySelector('.popup__text_form_plase');
+const placeLink = popupWAddElements.querySelector('.popup__text_form_link');
 
 const popupWPhoto = document.querySelector('#view_photo');
 const changeMyName = popupWPhoto.querySelector('.photo__caption');
@@ -78,7 +81,7 @@ const viewPhto = (name, link) => {
   changeMyName.textContent = name;
   changeMyLink.src = link;
   changeMyLink.alt = name;
-  popupWPhoto.classList.add('popup_opened');
+  openPopup(popupWPhoto);
 }
 
 // Функция удаления карточки
@@ -117,9 +120,6 @@ function createElementPlase(name, link) {
 // Добавление новой карточки
 function addElementPlase(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  // Берем данные из попапа
-  const placeName = popupWAddElements.querySelector('.popup__text_form_plase');
-  const placeLink = popupWAddElements.querySelector('.popup__text_form_link');
   
   createElementPlase(placeName.value, placeLink.value);
 
