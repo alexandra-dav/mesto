@@ -9,4 +9,6 @@
 .elements__image:hover {
     width: 290px;
     height: 290px;
+    transition: 0.5s;
+    cursor: pointer;
 }
