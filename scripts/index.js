@@ -97,16 +97,23 @@ function removeCard(e) {
   thisCard.closest('.elements__container').remove();
 }
 
+// Заполнение карточки 
+function createCard(n, l, container) {
+  container.querySelector('.elements__name').textContent = n;
+  const thisContainerLink = container.querySelector('.elements__image') 
+  thisContainerLink.src = l;
+  thisContainerLink.alt = n;
+}
+// Добавление карточки в разметку
+function renderCard(n, l){
+  const elementContainer = plaseTemplate.querySelector('.elements__container').cloneNode(true);
+  createCard(n, l, elementContainer);
+  elementsContainer.prepend(elementContainer);
+}
+
 // Создание новой карточки
 function createElementPlase(name, link) {
-  const elementContainer = plaseTemplate.querySelector('.elements__container').cloneNode(true);
-
-  elementContainer.querySelector('.elements__name').textContent = name;
-  const thisContainerLink = elementContainer.querySelector('.elements__image') 
-  thisContainerLink.src = link;
-  thisContainerLink.alt = name;
-
-  elementsContainer.prepend(elementContainer);
+  renderCard(name, link);
 
   const likeBtn = elementsContainer.querySelector('.elements__favorit');
   likeBtn.addEventListener('click', clikOnHeart);
