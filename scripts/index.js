@@ -132,12 +132,9 @@ function createElementPlase(name, link) {
 // Добавление новой карточки
 function addElementPlase(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  
   createElementPlase(placeName.value, placeLink.value);
-
   placeName.value = '';
   placeLink.value = '';
-
   closePopup(popupWAddElements);
 }
 
