@@ -125,7 +125,7 @@ function createCard(item) {
 }
 // Добавление карточки в разметку
 function renderCard(item){
-  return elementsContainer.prepend(createCard(item));
+  elementsContainer.prepend(createCard(item));
 }
 
 // Создание новой карточки
