@@ -88,7 +88,7 @@ const viewPhto = (name, link) => {
   changeMyLink.src = link;
   changeMyLink.alt = name;
   openPopup(popupWPhoto);
-  openPhoto(popupWPhoto);
+  openPhoto(popupWPhoto); // Тут не дублируются строки openPopup и openPhoto - это разные функции/ Описаны на 59 и 64 строках соответственно
 }
 
 // Функция удаления карточки
@@ -127,8 +127,6 @@ function createElementPlase(name, link) {
   chosePhoto.addEventListener('click', () => {
     viewPhto(name, link);
   });
-
-  closePopup(popupWAddElements);
 }
 
 // Добавление новой карточки
@@ -139,6 +137,8 @@ function addElementPlase(evt) {
 
   placeName.value = '';
   placeLink.value = '';
+
+  closePopup(popupWAddElements);
 }
 
 // Изменение данных в профиле
