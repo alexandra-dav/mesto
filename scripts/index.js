@@ -100,7 +100,7 @@ function removeCard(e) {
 // Заполнение карточки 
 function createCard(n, l, container) {
   container.querySelector('.elements__name').textContent = n;
-  const thisContainerLink = container.querySelector('.elements__image') 
+  const thisContainerLink = container.querySelector('.elements__image');
   thisContainerLink.src = l;
   thisContainerLink.alt = n;
 }
