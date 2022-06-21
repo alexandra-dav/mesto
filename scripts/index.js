@@ -98,41 +98,48 @@ function removeCard(e) {
 }
 
 // Заполнение карточки 
-function createCard(n, l, container) {
-  container.querySelector('.elements__name').textContent = n;
-  const thisContainerLink = container.querySelector('.elements__image');
+function createCard(item) {
+  const n = item.name;
+  const l = item.link;
+  const elementContainer = plaseTemplate.querySelector('.elements__container').cloneNode(true);
+  
+  elementContainer.querySelector('.elements__name').textContent = n;
+  const thisContainerLink = elementContainer.querySelector('.elements__image');
   thisContainerLink.src = l;
   thisContainerLink.alt = n;
-}
-// Добавление карточки в разметку
-function renderCard(n, l){
-  const elementContainer = plaseTemplate.querySelector('.elements__container').cloneNode(true);
-  createCard(n, l, elementContainer);
-  elementsContainer.prepend(elementContainer);
-}
 
-// Создание новой карточки
-function createElementPlase(name, link) {
-  renderCard(name, link);
-
-  const likeBtn = elementsContainer.querySelector('.elements__favorit');
+  const likeBtn = elementContainer.querySelector('.elements__favorit');
   likeBtn.addEventListener('click', clikOnHeart);
 
   // Удаление карточки
-  const deleteBtn = elementsContainer.querySelector('.elements__delete');
+  const deleteBtn = elementContainer.querySelector('.elements__delete');
   deleteBtn.addEventListener('click', removeCard);
 
   // Просмотр фото карточки
-  const chosePhoto = elementsContainer.querySelector('.elements__image');
+  const chosePhoto = elementContainer.querySelector('.elements__image');
   chosePhoto.addEventListener('click', () => {
-    viewPhto(name, link);
+    viewPhto(n, l);
   });
+
+  return elementContainer;
 }
+// Добавление карточки в разметку
+function renderCard(item){
+  return elementsContainer.prepend(createCard(item));
+}
+
+// Создание новой карточки
+/* function createElementPlase(name, link) {
+  return createCard(name, link);
+} */
 
 // Добавление новой карточки
 function addElementPlase(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  createElementPlase(placeName.value, placeLink.value);
+  renderCard({
+    name: placeName.value,
+    link: placeLink.value
+  });
   placeName.value = '';
   placeLink.value = '';
   closePopup(popupWAddElements);
@@ -151,9 +158,10 @@ function formSubmitHandler(evt) {
 }
 
 // Создаем дефолтное наполнение
-for(let i = 0; i < initialCards.length; i++) {
-  createElementPlase(initialCards[i].name, initialCards[i].link);
-}
+/* for(let i = 0; i < initialCards.length; i++) {
+  renderCard(initialCards[i].name, initialCards[i].link);
+} */
+initialCards.forEach(renderCard);
 
 /* Добавление модификатора при открытии попапа */
 buttonEditPropile.addEventListener('click', () => {openPopup(popupWProfile); addDataProfile()});
