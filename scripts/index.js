@@ -2,28 +2,26 @@ const popupWProfile = document.querySelector('#edit_profile');
 const buttonEditPropile = document.querySelector('.profile__edit-name');
 const profileName = document.querySelector('.profile__name');
 const profileOccupation = document.querySelector('.profile__occupation');
-const popupName = popupWProfile.querySelector('.popup__text_form_name');
-const popupJob = popupWProfile.querySelector('.popup__text_form_job');
-const buttonCloseProfile = document.querySelector('.popup__close_window_profile');
-const formElementProfile = popupWProfile.querySelector('form[name="popup-form"]');
+const popupFormProfile = document.forms.popupFormProfile;
 // Выберите элементы, куда должны быть вставлены значения полей
-const docName = document.querySelector('.profile__name');
-const docJob = document.querySelector('.profile__occupation');
+const popupName = popupFormProfile.elements.popupName;
+const popupJob = popupFormProfile.elements.popupJob;
+const buttonCloseProfile = document.querySelector('.popup__close_window_profile');
 
 const elementsContainer = document.querySelector('.elements');
 const plaseTemplate = document.querySelector('#plase-template').content;
 const popupWAddElements = document.querySelector('#add_elements');
 const buttonAddPlace = document.querySelector('.profile__add');
-const buttonCloseAddElements = document.querySelector('.popup__close_window_elements');
-const formElementPlace = popupWAddElements.querySelector('form[name="popup-form"]');
+const buttonCloseAddElements = popupWAddElements.querySelector('.popup__close_window_elements');
+const popupFormElements = document.forms.popupFormElements;
 // Берем данные из попапа
-const placeName = popupWAddElements.querySelector('.popup__text_form_plase');
-const placeLink = popupWAddElements.querySelector('.popup__text_form_link');
+const placeName = popupFormElements.elements.popupPlase;
+const placeLink = popupFormElements.elements.popupLink;
 
 const popupWPhoto = document.querySelector('#view_photo');
 const changeMyName = popupWPhoto.querySelector('.photo__caption');
 const changeMyLink = popupWPhoto.querySelector('.photo__image');
-const buttonClosePhoto = document.querySelector('.popup__close_window_photo');
+const buttonClosePhoto = popupWPhoto.querySelector('.popup__close_window_photo');
 
 /* При загрузке на странице должно быть 6 карточек, 
 которые добавит JavaScript.  */
@@ -61,7 +59,7 @@ function openPopup(e) {
 }
 
 // Подтягивание значений полей в попап при открытии
-function addDataProfile() { 
+function addDataProfile() {
   popupName.value = profileName.textContent;
   popupJob.value = profileOccupation.textContent;
 }
@@ -127,8 +125,7 @@ function addElementPlase(evt) {
     name: placeName.value,
     link: placeLink.value
   });
-  placeName.value = '';
-  placeLink.value = '';
+  popupFormElements.reset();
   closePopup(popupWAddElements);
 }
 
@@ -139,8 +136,8 @@ function formSubmitHandler(evt) {
   const jobInput = popupJob.value;
   const nameInput = popupName.value;
   // Вставьте новые значения с помощью textContent
-  docName.textContent = nameInput;
-  docJob.textContent = jobInput;
+  profileName.textContent = nameInput;
+  profileOccupation.textContent = jobInput;
   closePopup(popupWProfile);
 }
 
@@ -152,8 +149,8 @@ buttonAddPlace.addEventListener('click', () => {openPopup(popupWAddElements)});
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElementProfile.addEventListener('submit', formSubmitHandler);
-formElementPlace.addEventListener('submit', addElementPlase);
+popupFormProfile.addEventListener('submit', formSubmitHandler);
+popupFormElements.addEventListener('submit', addElementPlase);
 
 /* Удаление модификатора при закрытии попапа различными способами */
 buttonCloseProfile.addEventListener('click', () => {closePopup(popupWProfile)});

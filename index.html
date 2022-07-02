@@ -14,11 +14,11 @@
     <main>
         <section class="profile">
             <img src="https://images.unsplash.com/photo-1653934003352-660a5a93bcd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1964&q=80" alt="Аватар пользователя" class="profile__avatar">
-            <div class="profile__info">
+            <form class="profile__info" name="profileInfo">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
                 <button aria-label="edit-profile" class="profile__edit-name" type="button"></button>
                 <p class="profile__occupation">Исследователь океана</p>
-            </div>
+            </form>
             <button aria-label="add-content" class="profile__add" type="button"></button>
         </section>
 
@@ -35,7 +35,7 @@
         <div class="popup__content">
             <button aria-label="close" class="popup__close popup__close_window_profile" type="button"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form name="popup-form">
+            <form name="popupFormProfile">
                 <input type="text" name="popupName" class="popup__text popup__text_form_name" placeholder="Имя" value="">
                 <input type="text" name="popupJob" class="popup__text popup__text_form_job" placeholder="О себе" value="">
                 <button aria-label="submit" class="popup__save" type="submit">Сохранить</button>
@@ -47,7 +47,7 @@
         <div class="popup__content">
             <button aria-label="close" class="popup__close popup__close_window_elements" type="button"></button>
             <h2 class="popup__title">Новое место</h2>
-            <form name="popup-form">
+            <form name="popupFormElements">
                 <input type="text" name="popupPlase" class="popup__text popup__text_form_plase" placeholder="Название" value="">
                 <input type="text" name="popupLink" class="popup__text popup__text_form_link" placeholder="Ссылка на картинку" value="">
                 <button aria-label="submit" class="popup__save" type="submit">Создать</button>
