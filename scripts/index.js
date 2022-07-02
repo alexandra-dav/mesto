@@ -60,11 +60,6 @@ function openPopup(e) {
   e.classList.add('popup_opened');
 }
 
-// Затемнение фона при открытии фото
-const openPhoto = (e) => {
-  e.classList.add('photo_opened');
-}
-
 // Подтягивание значений полей в попап при открытии
 function addDataProfile() { 
   popupName.value = profileName.textContent;
@@ -88,7 +83,6 @@ const viewPhto = (name, link) => {
   changeMyLink.src = link;
   changeMyLink.alt = name;
   openPopup(popupWPhoto);
-  openPhoto(popupWPhoto); // Тут не дублируются строки openPopup и openPhoto - это разные функции/ Описаны на 59 и 64 строках соответственно
 }
 
 // Функция удаления карточки
@@ -99,14 +93,12 @@ function removeCard(e) {
 
 // Заполнение карточки 
 function createCard(item) {
-  const n = item.name;
-  const l = item.link;
   const elementContainer = plaseTemplate.querySelector('.elements__container').cloneNode(true);
   
-  elementContainer.querySelector('.elements__name').textContent = n;
+  elementContainer.querySelector('.elements__name').textContent = item.name;
   const thisContainerLink = elementContainer.querySelector('.elements__image');
-  thisContainerLink.src = l;
-  thisContainerLink.alt = n;
+  thisContainerLink.src = item.link;
+  thisContainerLink.alt = item.name;
 
   const likeBtn = elementContainer.querySelector('.elements__favorit');
   likeBtn.addEventListener('click', clikOnHeart);
@@ -118,7 +110,7 @@ function createCard(item) {
   // Просмотр фото карточки
   const chosePhoto = elementContainer.querySelector('.elements__image');
   chosePhoto.addEventListener('click', () => {
-    viewPhto(n, l);
+    viewPhto(item.name, item.link);
   });
 
   return elementContainer;
@@ -127,11 +119,6 @@ function createCard(item) {
 function renderCard(item){
   elementsContainer.prepend(createCard(item));
 }
-
-// Создание новой карточки
-/* function createElementPlase(name, link) {
-  return createCard(name, link);
-} */
 
 // Добавление новой карточки
 function addElementPlase(evt) {
@@ -157,10 +144,6 @@ function formSubmitHandler(evt) {
   closePopup(popupWProfile);
 }
 
-// Создаем дефолтное наполнение
-/* for(let i = 0; i < initialCards.length; i++) {
-  renderCard(initialCards[i].name, initialCards[i].link);
-} */
 initialCards.forEach(renderCard);
 
 /* Добавление модификатора при открытии попапа */
