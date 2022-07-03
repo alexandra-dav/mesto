@@ -56,18 +56,18 @@ const initialCards = [
 // Открыть попап
 function openPopup(e) {
   e.classList.add('popup_opened');
-}
+};
 
 // Подтягивание значений полей в попап при открытии
 function addDataProfile() {
   popupName.value = profileName.textContent;
   popupJob.value = profileOccupation.textContent;
-}
+};
 
 // Закрыть попап
 function closePopup(thisPopup) {
   thisPopup.classList.remove('popup_opened');
-}
+};
 
 //Закрыть попап на нажатию Escape
 document.addEventListener('keydown', function(e){
@@ -79,11 +79,18 @@ document.addEventListener('keydown', function(e){
   }
 });
 
+// Закрытие попапа кликом на оверлей
+const clickOverlay = function(event) {
+  if (event.target === event.currentTarget) {
+    closePopup(event.currentTarget);
+  }
+};
+
 // Функция добавления-удаления класса у сердечка
 const clikOnHeart = (e) => {
   const eventTarget = e.target;
   eventTarget.classList.toggle('elements__favorit_active');
-}
+};
 
 // Функция просмотра фото карточки
 const viewPhto = (name, link) => {
@@ -91,13 +98,13 @@ const viewPhto = (name, link) => {
   changeMyLink.src = link;
   changeMyLink.alt = name;
   openPopup(popupWPhoto);
-}
+};
 
 // Функция удаления карточки
 function removeCard(e) {
   const thisCard = e.target;
   thisCard.closest('.elements__container').remove();
-}
+};
 
 // Заполнение карточки 
 function createCard(item) {
@@ -122,11 +129,11 @@ function createCard(item) {
   });
 
   return elementContainer;
-}
+};
 // Добавление карточки в разметку
 function renderCard(item){
   elementsContainer.prepend(createCard(item));
-}
+};
 
 // Добавление новой карточки
 function addElementPlase(evt) {
@@ -137,7 +144,7 @@ function addElementPlase(evt) {
   });
   popupFormElements.reset();
   closePopup(popupWAddElements);
-}
+};
 
 // Изменение данных в профиле
 function formSubmitHandler(evt) {
@@ -149,7 +156,7 @@ function formSubmitHandler(evt) {
   profileName.textContent = nameInput;
   profileOccupation.textContent = jobInput;
   closePopup(popupWProfile);
-}
+};
 
 initialCards.forEach(renderCard);
 
@@ -166,15 +173,6 @@ popupFormElements.addEventListener('submit', addElementPlase);
 buttonCloseProfile.addEventListener('click', () => {closePopup(popupWProfile)});
 buttonCloseAddElements.addEventListener('click', () => {closePopup(popupWAddElements)});
 buttonClosePhoto.addEventListener('click', () => {closePopup(popupWPhoto)});
-
-/* popupW.addEventListener('click', function(e) {
-    if (e.target === e.currentTarget) {
-        popupW.classList.remove('popup_opened');
-    }
-}); */
-
-/* popupW.addEventListener('click', function(e) {
-    if (e.target === e.currentTarget) {
-        popupW.classList.remove('popup_opened');
-    }
-}); */
+popupWProfile.addEventListener('click', clickOverlay);
+popupWAddElements.addEventListener('click', clickOverlay);
+popupWPhoto.addEventListener('click', clickOverlay);
