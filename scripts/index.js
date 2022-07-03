@@ -69,6 +69,16 @@ function closePopup(thisPopup) {
   thisPopup.classList.remove('popup_opened');
 }
 
+//Закрыть попап на нажатию Escape
+document.addEventListener('keydown', function(e){
+  const key = e.code;  
+  if (key === "Escape") {
+    // Искать открытый попап
+    const closeThis = document.querySelector('.popup_opened');
+    closePopup(closeThis);
+  }
+});
+
 // Функция добавления-удаления класса у сердечка
 const clikOnHeart = (e) => {
   const eventTarget = e.target;
@@ -165,12 +175,6 @@ buttonClosePhoto.addEventListener('click', () => {closePopup(popupWPhoto)});
 
 /* popupW.addEventListener('click', function(e) {
     if (e.target === e.currentTarget) {
-        popupW.classList.remove('popup_opened');
-    }
-}); */
-
-/* document.addEventListener('keydown', function(e){
-    if (e.code === "Escape") {
         popupW.classList.remove('popup_opened');
     }
 }); */
