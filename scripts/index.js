@@ -70,19 +70,23 @@ function closePopup(thisPopup) {
 };
 
 //Закрыть попап на нажатию Escape
-document.addEventListener('keydown', function(e){
+const clickEscape = (e) => {
   const key = e.code;  
   if (key === "Escape") {
     // Искать открытый попап
     const closeThis = document.querySelector('.popup_opened');
     closePopup(closeThis);
+    e.target.removeEventListener('keydown', clickEscape); // снять слушатель
   }
-});
+};
+
+document.addEventListener('keydown', clickEscape);
 
 // Закрытие попапа кликом на оверлей
 const clickOverlay = function(event) {
   if (event.target === event.currentTarget) {
     closePopup(event.currentTarget);
+    event.target.removeEventListener('click', clickOverlay); // снять слушатель
   }
 };
 
