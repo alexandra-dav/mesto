@@ -1,25 +1,24 @@
-const showInputError = (formElement, inputElement, errorMessage) => {
+
+const showInputError = (formElement, inputElement, errorMessage, item) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add('popup__input_type_error');
+    inputElement.classList.add(`${item.inputErrorClass}`);
     errorElement.textContent = errorMessage;
-    errorElement.classList.add('popup__error_visible');
+    errorElement.classList.add(`${item.errorClass}`);
   };
   
-  const hideInputError = (formElement, inputElement) => {
+  const hideInputError = (formElement, inputElement, item) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove('popup__input_type_error');
-    errorElement.classList.remove('popup__error_visible');
+    inputElement.classList.remove(`${item.inputErrorClass}`);
+    errorElement.classList.remove(`${item.errorClass}`);
     errorElement.textContent = '';
   };
 
-
-
 // Проверка инпутов при вводе
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, item) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, inputElement.validationMessage, item);
   } else {
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, item);
   }
 };
 
@@ -34,45 +33,40 @@ const hasInvalidInput = (inputList) => {
 };
 
 // Переключатель классов: зависит от тог валидна ли форма
-const toggleButtonState = (inputList, buttonElement) => { //Первый — массив полей, второй — кнопка «Далее».
+const toggleButtonState = (inputList, buttonElement, item) => { //Первый — массив полей, второй — кнопка «Далее».
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('popup__button_disabled');
+    buttonElement.classList.add(`${item.inactiveButtonClass}`);
   } else {
-    buttonElement.classList.remove('popup__button_disabled');
+    buttonElement.classList.remove(`${item.inactiveButtonClass}`);
   }
 };
 
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
+const enableValidation = (item) => {
+  const formList = Array.from(document.querySelectorAll(`${item.formSelector}`));
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', function (evt) {
       evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-    }); 
-    const inputList = Array.from(formElement.querySelectorAll('.popup__input')); // находим все инпуты
-    const buttonElement = formElement.querySelector('.popup__button'); // находим кнопку
-    toggleButtonState(inputList, buttonElement); // проверяем изначально форма валидна?
+    });
+    const inputList = Array.from(formElement.querySelectorAll(`${item.inputSelector}`)); // находим все инпуты
+    const buttonElement = formElement.querySelector(`${item.submitButtonSelector}`); // находим кнопку
+    toggleButtonState(inputList, buttonElement, item); // проверяем изначально форма валидна?
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', function () {
-        checkInputValidity(formElement, inputElement);
-        toggleButtonState(inputList, buttonElement);
+        checkInputValidity(formElement, inputElement, item);
+        toggleButtonState(inputList, buttonElement, item);
       });
     });
   });
 };
 
 
-
-
 // включение валидации вызовом enableValidation
 // все настройки передаются при вызове
-
-/* enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
-  }); */
-
-  enableValidation();
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+});
