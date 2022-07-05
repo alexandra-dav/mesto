@@ -1,4 +1,4 @@
-.popup__text {
+.popup__input {
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     width: 358px;
@@ -9,29 +9,16 @@
     line-height: 17px;
     outline: 0;
     padding: 2px 0 13px;
-    /* из-за padding-top  30px - 2px = 28px */
-    margin: 0 0 28px;
+    margin: 0;
 }
 
-/* .popup__text:first-of-type {
-    margin: 0 0 30px;
-} */
-
-.popup__text:last-of-type {
-    /* из-за padding-top  48px - 2px = 46px */
-    margin-bottom: 46px;
-}
-
-.popup__text:focus-visible {
+.popup__input:focus-visible {
     /* outline: 2px solid rgb(92, 174, 207); */
     border-bottom: 1px solid rgb(92, 174, 207);
 }
 
 @media screen and (max-width: 767px) {
-    .popup__text {
+    .popup__input {
         width: 238px;
-    }
-    .popup__text:last-of-type {
-        margin-bottom: 43px;
     }
 }

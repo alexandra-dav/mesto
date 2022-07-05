@@ -35,10 +35,16 @@
         <div class="popup__content">
             <button aria-label="close" class="popup__close popup__close_window_profile" type="button"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form name="popupFormProfile">
-                <input type="text" name="popupName" class="popup__text popup__text_form_name" placeholder="Имя" value="">
-                <input type="text" name="popupJob" class="popup__text popup__text_form_job" placeholder="О себе" value="">
-                <button aria-label="submit" class="popup__save" type="submit">Сохранить</button>
+            <form name="popupFormProfile" class="popup__form">
+                <fieldset class="popup__fieldset">
+                    <input type="text" id="popupName" name="popupName" class="popup__input popup__input_form_name" placeholder="Имя" value="" minlength="2" maxlength="40" required novalidate>
+                    <span class="popupName-error"></span>
+                </fieldset>
+                <fieldset class="popup__fieldset">
+                    <input type="text" id="popupJob" name="popupJob" class="popup__input popup__input_form_job" placeholder="О себе" value="" minlength="2" maxlength="200" required novalidate>
+                    <span class="popupJob-error"></span>
+                </fieldset>                
+                <button aria-label="submit" class="popup__button" type="submit">Сохранить</button>
             </form>                
         </div>
     </div>
@@ -47,10 +53,16 @@
         <div class="popup__content">
             <button aria-label="close" class="popup__close popup__close_window_elements" type="button"></button>
             <h2 class="popup__title">Новое место</h2>
-            <form name="popupFormElements">
-                <input type="text" name="popupPlase" class="popup__text popup__text_form_plase" placeholder="Название" value="">
-                <input type="text" name="popupLink" class="popup__text popup__text_form_link" placeholder="Ссылка на картинку" value="">
-                <button aria-label="submit" class="popup__save" type="submit">Создать</button>
+            <form name="popupFormElements" class="popup__form">
+                <fieldset class="popup__fieldset">
+                  <input type="text" id="popupPlase" name="popupPlase" class="popup__input popup__input_form_plase" placeholder="Название" value="" minlength="2" maxlength="30" required novalidate>
+                  <span class="popupPlase-error"></span>
+                </fieldset>
+                <fieldset class="popup__fieldset">
+                    <input type="url" id="popupLink" name="popupLink" class="popup__input popup__input_form_link" placeholder="Ссылка на картинку" value="" required novalidate>
+                    <span class="popupLink-error"></span>
+                </fieldset>                
+                <button aria-label="submit" class="popup__button" type="submit">Создать</button>
             </form>                
         </div>
     </div>
