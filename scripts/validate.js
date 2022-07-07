@@ -33,27 +33,24 @@ const hasInvalidInput = (inputList) => {
 };
 
 // Переключатель классов: зависит от тог валидна ли форма
-const toggleButtonState = (inputList, buttonElement, item) => { //Первый — массив полей, второй — кнопка «Далее».
+const toggleButtonState = (inputList, buttonElement) => { //Первый — массив полей, второй — кнопка «Далее».
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(`${item.inactiveButtonClass}`);
+    buttonElement.setAttribute('disabled', 'disabled');
   } else {
-    buttonElement.classList.remove(`${item.inactiveButtonClass}`);
+    buttonElement.removeAttribute('disabled');
   }
 };
 
 const enableValidation = (item) => {
   const formList = Array.from(document.querySelectorAll(`${item.formSelector}`));
   formList.forEach((formElement) => {
-    formElement.addEventListener('submit', function (evt) {
-      evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-    });
     const inputList = Array.from(formElement.querySelectorAll(`${item.inputSelector}`)); // находим все инпуты
     const buttonElement = formElement.querySelector(`${item.submitButtonSelector}`); // находим кнопку
-    toggleButtonState(inputList, buttonElement, item); // проверяем изначально форма валидна?
+    toggleButtonState(inputList, buttonElement); // проверяем изначально форма валидна?
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', function () {
         checkInputValidity(formElement, inputElement, item);
-        toggleButtonState(inputList, buttonElement, item);
+        toggleButtonState(inputList, buttonElement);
       });
     });
   });
