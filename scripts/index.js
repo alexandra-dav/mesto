@@ -160,9 +160,9 @@ function addElementPlase(evt) {
     name: placeName.value,
     link: placeLink.value
   });
+  evt.target.reset();
   const buttonElement = popupWAddElements.querySelector('.popup__button'); // находим кнопку
   toggleButtonState([placeName, placeLink], buttonElement, errorList); //когда закрываем попап блокируем кнопку
-  evt.target.reset();
   closePopup(popupWAddElements);
 };
 
@@ -185,7 +185,10 @@ buttonEditPropile.addEventListener('click', () => {
   openPopup(popupWProfile);
   addDataProfile()
 });
-buttonAddPlace.addEventListener('click', () => {openPopup(popupWAddElements)});
+buttonAddPlace.addEventListener('click', () => {
+  popupFormElements.reset();
+  openPopup(popupWAddElements);
+});
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
@@ -194,8 +197,5 @@ popupFormElements.addEventListener('submit', addElementPlase);
 
 /* Удаление модификатора при закрытии попапа различными способами */
 buttonCloseProfile.addEventListener('click', () => {closePopup(popupWProfile)});
-buttonCloseAddElements.addEventListener('click', () => {
-  closePopup(popupWAddElements); 
-  popupFormElements.reset();
-});
+buttonCloseAddElements.addEventListener('click', () => {closePopup(popupWAddElements);});
 buttonClosePhoto.addEventListener('click', () => {closePopup(popupWPhoto)});
