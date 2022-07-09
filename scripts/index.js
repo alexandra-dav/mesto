@@ -73,11 +73,22 @@ const clickOverlay = function(event) {
   }
 };
 
+// Очистить спаны
+const clesrSpans = (thisPopup) => {
+  const allSpans = Array.from(thisPopup.querySelectorAll('.popup__error_visible')); // находим все спаны с ошибкой
+  allSpans.forEach((element) => {
+    const parentElement = element.parentElement;
+    const inputElement = parentElement.querySelector('.popup__input');
+    hideInputError(thisPopup, inputElement, errorList);
+  });
+};
+
 // Открыть попап
 function openPopup(e) {
   e.classList.add('popup_opened');
   document.addEventListener('keydown', clickEscape);
   e.addEventListener('click', clickOverlay);
+  clesrSpans(e);
 };
 
 // Подтягивание значений полей в попап при открытии
@@ -93,8 +104,6 @@ function closePopup(thisPopup) {
   thisPopup.removeEventListener('click', clickOverlay);
   popupFormElements.reset();
 };
-
-
 
 // Функция добавления-удаления класса у сердечка
 const clikOnHeart = (e) => {
@@ -153,19 +162,10 @@ function addElementPlase(evt) {
     name: placeName.value,
     link: placeLink.value
   });
-  /* popupFormElements.reset(); */
   closePopup(popupWAddElements);
-  const inputList = Array.from(popupWAddElements.querySelectorAll('.popup__input')); // находим все инпуты
   const buttonElement = popupWAddElements.querySelector('.popup__button'); // находим кнопку
-  toggleButtonState(inputList, buttonElement); //когда закрываем попап блокируем кнопку
-/*   enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
-  }); */
+  toggleButtonState([placeName, placeLink], buttonElement); //когда закрываем попап блокируем кнопку
+
 };
 
 // Изменение данных в профиле
@@ -177,6 +177,8 @@ function formSubmitHandler(evt) {
   // Вставьте новые значения с помощью textContent
   profileName.textContent = nameInput;
   profileOccupation.textContent = jobInput;
+/*   const buttonElement = popupWProfile.querySelector('.popup__button'); // находим кнопку
+  toggleButtonState([popupName, popupJob], buttonElement); //когда закрываем попап блокируем кнопку */
   closePopup(popupWProfile);
 };
 
@@ -195,6 +197,3 @@ popupFormElements.addEventListener('submit', addElementPlase);
 buttonCloseProfile.addEventListener('click', () => {closePopup(popupWProfile)});
 buttonCloseAddElements.addEventListener('click', () => {closePopup(popupWAddElements)});
 buttonClosePhoto.addEventListener('click', () => {closePopup(popupWPhoto)});
-/* popupWProfile.addEventListener('click', clickOverlay);
-popupWAddElements.addEventListener('click', clickOverlay);
-popupWPhoto.addEventListener('click', clickOverlay); */
