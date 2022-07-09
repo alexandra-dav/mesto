@@ -52,10 +52,32 @@ const initialCards = [
     }
   ];
 
+//Закрыть попап на нажатию Escape
+const clickEscape = (e) => {
+  const key = e.code;
+  if (key === "Escape") {
+    // Искать открытый попап
+    const closeThis = document.querySelector('.popup_opened');
+    closePopup(closeThis);
+    e.target.removeEventListener('keydown', clickEscape); // снять слушатель
+  }
+};
+
+/* document.addEventListener('keydown', clickEscape); */
+
+// Закрытие попапа кликом на оверлей
+const clickOverlay = function(event) {
+  if (event.target === event.currentTarget) {
+    closePopup(event.currentTarget);
+    //event.target.removeEventListener('click', clickOverlay); // снять слушатель
+  }
+};
 
 // Открыть попап
 function openPopup(e) {
   e.classList.add('popup_opened');
+  document.addEventListener('keydown', clickEscape);
+  e.addEventListener('click', clickOverlay);
 };
 
 // Подтягивание значений полей в попап при открытии
@@ -67,28 +89,12 @@ function addDataProfile() {
 // Закрыть попап
 function closePopup(thisPopup) {
   thisPopup.classList.remove('popup_opened');
+  /* document.removeEventListener('keydown', clickEscape); // снять слушатель */
+  thisPopup.removeEventListener('click', clickOverlay);
+  popupFormElements.reset();
 };
 
-//Закрыть попап на нажатию Escape
-const clickEscape = (e) => {
-  const key = e.code;  
-  if (key === "Escape") {
-    // Искать открытый попап
-    const closeThis = document.querySelector('.popup_opened');
-    closePopup(closeThis);
-    e.target.removeEventListener('keydown', clickEscape); // снять слушатель
-  }
-};
 
-document.addEventListener('keydown', clickEscape);
-
-// Закрытие попапа кликом на оверлей
-const clickOverlay = function(event) {
-  if (event.target === event.currentTarget) {
-    closePopup(event.currentTarget);
-    event.target.removeEventListener('click', clickOverlay); // снять слушатель
-  }
-};
 
 // Функция добавления-удаления класса у сердечка
 const clikOnHeart = (e) => {
@@ -134,6 +140,7 @@ function createCard(item) {
 
   return elementContainer;
 };
+
 // Добавление карточки в разметку
 function renderCard(item){
   elementsContainer.prepend(createCard(item));
@@ -146,8 +153,19 @@ function addElementPlase(evt) {
     name: placeName.value,
     link: placeLink.value
   });
-  popupFormElements.reset();
+  /* popupFormElements.reset(); */
   closePopup(popupWAddElements);
+  const inputList = Array.from(popupWAddElements.querySelectorAll('.popup__input')); // находим все инпуты
+  const buttonElement = popupWAddElements.querySelector('.popup__button'); // находим кнопку
+  toggleButtonState(inputList, buttonElement); //когда закрываем попап блокируем кнопку
+/*   enableValidation({
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+  }); */
 };
 
 // Изменение данных в профиле
@@ -177,6 +195,6 @@ popupFormElements.addEventListener('submit', addElementPlase);
 buttonCloseProfile.addEventListener('click', () => {closePopup(popupWProfile)});
 buttonCloseAddElements.addEventListener('click', () => {closePopup(popupWAddElements)});
 buttonClosePhoto.addEventListener('click', () => {closePopup(popupWPhoto)});
-popupWProfile.addEventListener('click', clickOverlay);
+/* popupWProfile.addEventListener('click', clickOverlay);
 popupWAddElements.addEventListener('click', clickOverlay);
-popupWPhoto.addEventListener('click', clickOverlay);
+popupWPhoto.addEventListener('click', clickOverlay); */

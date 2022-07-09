@@ -36,8 +36,10 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (inputList, buttonElement) => { //Первый — массив полей, второй — кнопка «Далее».
   if (hasInvalidInput(inputList)) {
     buttonElement.setAttribute('disabled', 'disabled');
+    buttonElement.classList.add('popup__button_disabled');
   } else {
     buttonElement.removeAttribute('disabled');
+    buttonElement.classList.remove('popup__button_disabled');
   }
 };
 
