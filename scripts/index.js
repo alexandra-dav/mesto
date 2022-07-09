@@ -59,11 +59,8 @@ const clickEscape = (e) => {
     // Искать открытый попап
     const closeThis = document.querySelector('.popup_opened');
     closePopup(closeThis);
-    e.target.removeEventListener('keydown', clickEscape); // снять слушатель
   }
 };
-
-/* document.addEventListener('keydown', clickEscape); */
 
 // Закрытие попапа кликом на оверлей
 const clickOverlay = function(event) {
@@ -102,9 +99,8 @@ function addDataProfile() {
 // Закрыть попап
 function closePopup(thisPopup) {
   thisPopup.classList.remove('popup_opened');
-  /* document.removeEventListener('keydown', clickEscape); // снять слушатель */
+  document.removeEventListener('keydown', clickEscape); // снять слушатель
   thisPopup.removeEventListener('click', clickOverlay);
-  
 };
 
 // Функция добавления-удаления класса у сердечка
