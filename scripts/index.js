@@ -104,7 +104,7 @@ function closePopup(thisPopup) {
   thisPopup.classList.remove('popup_opened');
   /* document.removeEventListener('keydown', clickEscape); // снять слушатель */
   thisPopup.removeEventListener('click', clickOverlay);
-  popupFormElements.reset();
+  
 };
 
 // Функция добавления-удаления класса у сердечка
@@ -164,10 +164,10 @@ function addElementPlase(evt) {
     name: placeName.value,
     link: placeLink.value
   });
-  closePopup(popupWAddElements);
   const buttonElement = popupWAddElements.querySelector('.popup__button'); // находим кнопку
   toggleButtonState([placeName, placeLink], buttonElement, errorList); //когда закрываем попап блокируем кнопку
-
+  evt.target.reset();
+  closePopup(popupWAddElements);
 };
 
 // Изменение данных в профиле
@@ -185,7 +185,10 @@ function formSubmitHandler(evt) {
 initialCards.forEach(renderCard);
 
 /* Добавление модификатора при открытии попапа */
-buttonEditPropile.addEventListener('click', () => {openPopup(popupWProfile); addDataProfile()});
+buttonEditPropile.addEventListener('click', () => {
+  openPopup(popupWProfile);
+  addDataProfile()
+});
 buttonAddPlace.addEventListener('click', () => {openPopup(popupWAddElements)});
 
 // Прикрепляем обработчик к форме:
@@ -195,5 +198,8 @@ popupFormElements.addEventListener('submit', addElementPlase);
 
 /* Удаление модификатора при закрытии попапа различными способами */
 buttonCloseProfile.addEventListener('click', () => {closePopup(popupWProfile)});
-buttonCloseAddElements.addEventListener('click', () => {closePopup(popupWAddElements)});
+buttonCloseAddElements.addEventListener('click', () => {
+  closePopup(popupWAddElements); 
+  popupFormElements.reset();
+});
 buttonClosePhoto.addEventListener('click', () => {closePopup(popupWPhoto)});
