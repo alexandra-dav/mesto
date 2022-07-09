@@ -96,7 +96,7 @@ function addDataProfile() {
   popupName.value = profileName.textContent;
   popupJob.value = profileOccupation.textContent;
   const buttonElement = popupWProfile.querySelector('.popup__button'); // находим кнопку
-  toggleButtonState([popupName, popupJob], buttonElement); //когда закрываем попап блокируем кнопку
+  toggleButtonState([popupName, popupJob], buttonElement, errorList); //когда закрываем попап блокируем кнопку
 };
 
 // Закрыть попап
@@ -166,7 +166,7 @@ function addElementPlase(evt) {
   });
   closePopup(popupWAddElements);
   const buttonElement = popupWAddElements.querySelector('.popup__button'); // находим кнопку
-  toggleButtonState([placeName, placeLink], buttonElement); //когда закрываем попап блокируем кнопку
+  toggleButtonState([placeName, placeLink], buttonElement, errorList); //когда закрываем попап блокируем кнопку
 
 };
 

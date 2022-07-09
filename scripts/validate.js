@@ -41,14 +41,13 @@ const hasInvalidInput = (inputList) => {
 };
 
 // Переключатель классов: зависит от тог валидна ли форма
-const toggleButtonState = (inputList, buttonElement) => { //Первый — массив полей, второй — кнопка
-  //console.log(hasInvalidInput(inputList));
+const toggleButtonState = (inputList, buttonElement, item) => { //Первый — массив полей, второй — кнопка
   if (hasInvalidInput(inputList)) {
     buttonElement.setAttribute('disabled', 'disabled');
-    buttonElement.classList.add('popup__button_disabled');
+    buttonElement.classList.add(`${item.inactiveButtonClass}`);
   } else {
     buttonElement.removeAttribute('disabled');
-    buttonElement.classList.remove('popup__button_disabled');
+    buttonElement.classList.remove(`${item.inactiveButtonClass}`);
   }
 };
 
@@ -57,11 +56,11 @@ const enableValidation = (item) => {
   formList.forEach((formElement) => {
     const inputList = Array.from(formElement.querySelectorAll(`${item.inputSelector}`)); // находим все инпуты
     const buttonElement = formElement.querySelector(`${item.submitButtonSelector}`); // находим кнопку
-    toggleButtonState(inputList, buttonElement); // проверяем изначально форма валидна?
+    toggleButtonState(inputList, buttonElement, item); // проверяем изначально форма валидна?
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', function () {
         checkInputValidity(formElement, inputElement, item);
-        toggleButtonState(inputList, buttonElement);
+        toggleButtonState(inputList, buttonElement, item);
       });
     });
   });
