@@ -95,6 +95,8 @@ function openPopup(e) {
 function addDataProfile() {
   popupName.value = profileName.textContent;
   popupJob.value = profileOccupation.textContent;
+  const buttonElement = popupWProfile.querySelector('.popup__button'); // находим кнопку
+  toggleButtonState([popupName, popupJob], buttonElement); //когда закрываем попап блокируем кнопку
 };
 
 // Закрыть попап
@@ -177,8 +179,6 @@ function formSubmitHandler(evt) {
   // Вставьте новые значения с помощью textContent
   profileName.textContent = nameInput;
   profileOccupation.textContent = jobInput;
-/*   const buttonElement = popupWProfile.querySelector('.popup__button'); // находим кнопку
-  toggleButtonState([popupName, popupJob], buttonElement); //когда закрываем попап блокируем кнопку */
   closePopup(popupWProfile);
 };
 
