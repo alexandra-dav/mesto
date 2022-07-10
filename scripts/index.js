@@ -70,22 +70,11 @@ const clickOverlay = function(event) {
   }
 };
 
-// Очистить спаны
-const clesrSpans = (thisPopup) => {
-  const allSpans = Array.from(thisPopup.querySelectorAll('.popup__error_visible')); // находим все спаны с ошибкой
-  allSpans.forEach((element) => {
-    const parentElement = element.parentElement;
-    const inputElement = parentElement.querySelector('.popup__input');
-    hideInputError(thisPopup, inputElement, errorList);
-  });
-};
-
 // Открыть попап
 function openPopup(e) {
   e.classList.add('popup_opened');
   document.addEventListener('keydown', clickEscape);
   e.addEventListener('click', clickOverlay);
-  clesrSpans(e);
 };
 
 // Подтягивание значений полей в попап при открытии
@@ -183,10 +172,15 @@ initialCards.forEach(renderCard);
 /* Добавление модификатора при открытии попапа */
 buttonEditPropile.addEventListener('click', () => {
   openPopup(popupWProfile);
-  addDataProfile()
+  hideInputError(popupFormProfile, popupName, errorList);
+  hideInputError(popupFormProfile, popupJob, errorList);
+  addDataProfile();
 });
+
 buttonAddPlace.addEventListener('click', () => {
   popupFormElements.reset();
+  hideInputError(popupFormElements, placeName, errorList);
+  hideInputError(popupFormElements, placeLink, errorList);
   openPopup(popupWAddElements);
 });
 

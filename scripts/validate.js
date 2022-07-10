@@ -5,21 +5,21 @@ const errorList = {
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
-}
+};
 
 const showInputError = (formElement, inputElement, errorMessage, item) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add(`${item.inputErrorClass}`);
-    errorElement.textContent = errorMessage;
-    errorElement.classList.add(`${item.errorClass}`);
-  };
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add(`${item.inputErrorClass}`);
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add(`${item.errorClass}`);
+};
   
-  const hideInputError = (formElement, inputElement, item) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove(`${item.inputErrorClass}`);
-    errorElement.classList.remove(`${item.errorClass}`);
-    errorElement.textContent = '';
-  };
+const hideInputError = (formElement, inputElement, item) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove(`${item.inputErrorClass}`);
+  errorElement.classList.remove(`${item.errorClass}`);
+  errorElement.textContent = '';
+};
 
 // Проверка инпутов при вводе
 const checkInputValidity = (formElement, inputElement, item) => {
