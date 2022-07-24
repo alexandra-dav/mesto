@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./pages/index.css">
     <title>Место</title>
+    <script type="module" src="./scripts/index.js"></script>
 </head>
 <body class="page">
     <header class="header">
@@ -37,11 +38,11 @@
             <h2 class="popup__title">Редактировать профиль</h2>
             <form name="popupFormProfile" class="popup__form">
                 <fieldset class="popup__fieldset">
-                    <input type="text" id="popupName" name="popupName" class="popup__input popup__input_form_name" placeholder="Имя" value="" minlength="2" maxlength="40" novalidate required>
+                    <input type="text" id="popupName" name="popupName" class="popup__input popup__input_form_name" placeholder="Имя" value="" minlength="2" maxlength="40" required>
                     <span class="popupName-error"></span>
                 </fieldset>
                 <fieldset class="popup__fieldset">
-                    <input type="text" id="popupJob" name="popupJob" class="popup__input popup__input_form_job" placeholder="О себе" value="" minlength="2" maxlength="200" novalidate required>
+                    <input type="text" id="popupJob" name="popupJob" class="popup__input popup__input_form_job" placeholder="О себе" value="" minlength="2" maxlength="200" required>
                     <span class="popupJob-error"></span>
                 </fieldset>
                 <button aria-label="submit" class="popup__button" type="submit">Сохранить</button>
@@ -55,11 +56,11 @@
             <h2 class="popup__title">Новое место</h2>
             <form name="popupFormElements" class="popup__form">
                 <fieldset class="popup__fieldset">
-                  <input type="text" id="popupPlase" name="popupPlase" class="popup__input popup__input_form_plase" placeholder="Название" value="" minlength="2" maxlength="30" novalidate required>
+                  <input type="text" id="popupPlase" name="popupPlase" class="popup__input popup__input_form_plase" placeholder="Название" value="" minlength="2" maxlength="30" required>
                   <span class="popupPlase-error"></span>
                 </fieldset>
                 <fieldset class="popup__fieldset">
-                    <input type="url" id="popupLink" name="popupLink" class="popup__input popup__input_form_link" placeholder="Ссылка на картинку" value="" novalidate required>
+                    <input type="url" id="popupLink" name="popupLink" class="popup__input popup__input_form_link" placeholder="Ссылка на картинку" value="" required>
                     <span class="popupLink-error"></span>
                 </fieldset>                
                 <button aria-label="submit" class="popup__button" type="submit">Создать</button>
@@ -87,8 +88,5 @@
             <button aria-label="delete" name="button-del" id="button-del" class="elements__delete" type="button"></button>
         </article>
     </template>
-
-    <script src="./scripts/index.js"></script>
-    <script src="./scripts/validate.js"></script>
 </body>
 </html>
