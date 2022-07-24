@@ -1,8 +1,7 @@
-import { Card } from './Card';
-import { FormValidator } from './FormValidator';
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
 
-(() => {
-  const popupWProfile = document.querySelector('#edit_profile');
+const popupWProfile = document.querySelector('#edit_profile');
 const buttonEditPropile = document.querySelector('.profile__edit-name');
 const profileName = document.querySelector('.profile__name');
 const profileOccupation = document.querySelector('.profile__occupation');
@@ -21,9 +20,9 @@ const popupFormElements = document.forms.popupFormElements;
 const placeName = popupFormElements.elements.popupPlase;
 const placeLink = popupFormElements.elements.popupLink;
 
-const popupWPhoto = document.querySelector('#view_photo');
-const changeMyName = popupWPhoto.querySelector('.photo__caption');
-const changeMyLink = popupWPhoto.querySelector('.photo__image');
+export const popupWPhoto = document.querySelector('#view_photo');
+export const changeMyName = popupWPhoto.querySelector('.photo__caption');
+export const changeMyLink = popupWPhoto.querySelector('.photo__image');
 const buttonClosePhoto = popupWPhoto.querySelector('.popup__close_window_photo');
 
 const buttonElement = popupWAddElements.querySelector('.popup__button'); // находим кнопку
@@ -85,7 +84,7 @@ const clickOverlay = function(event) {
 };
 
 // Открыть попап
-function openPopup(e) {
+export function openPopup(e) {
   e.classList.add('popup_opened');
   document.addEventListener('keydown', clickEscape);
   e.addEventListener('click', clickOverlay);
@@ -171,4 +170,3 @@ popupFormElements.addEventListener('submit', addElementPlase);
 buttonCloseProfile.addEventListener('click', () => {closePopup(popupWProfile)});
 buttonCloseAddElements.addEventListener('click', () => {closePopup(popupWAddElements);});
 buttonClosePhoto.addEventListener('click', () => {closePopup(popupWPhoto)});
-})

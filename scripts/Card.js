@@ -1,3 +1,4 @@
+import {popupWPhoto, changeMyName, changeMyLink, openPopup} from './index.js';
 export class Card {
     // конструктор класса 
     constructor(arrey, selector){
@@ -37,7 +38,7 @@ export class Card {
         this._removeCard();
       });
       this._element.querySelector('.elements__image').addEventListener('click', () => {
-        this._viewPhto();
+        this._viewPhoto();
       });
     }
     
@@ -52,10 +53,10 @@ export class Card {
     }
   
     // Просмотр фото карточки
-    _viewPhto(){
+    _viewPhoto(){
       changeMyName.textContent = this._name;
       changeMyLink.src = this._link;
       changeMyLink.alt = this._name;
       openPopup(popupWPhoto);
-    };
+    }
   }
