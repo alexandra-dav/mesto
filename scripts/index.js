@@ -56,10 +56,7 @@ export function openPopup(e) {
 function addDataProfile() {
   popupName.value = profileName.textContent;
   popupJob.value = profileOccupation.textContent;
-  //const validFormProfile = new FormValidator(errorList, popupFormProfile);
-  validFormProfile._toggleButtonState();
-  //const buttonElement = popupWProfile.querySelector('.popup__button'); // находим кнопку
-  //toggleButtonState([popupName, popupJob], buttonElement, errorList); //когда закрываем попап блокируем кнопку
+  validFormProfile._toggleButtonState(); //когда закрываем попап блокируем кнопку
 };
 
 // Закрыть попап
@@ -72,14 +69,13 @@ function closePopup(thisPopup) {
 // Добавление новой карточки
 function addElementPlase(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  renderCard({
+  const cardElement = renderCard({
     name: placeName.value,
     link: placeLink.value
   });
+  document.querySelector('.elements').prepend(cardElement);
   evt.target.reset();
-  //const validFormElements = new FormValidator(errorList, popupFormElements);
-  validFormElements._toggleButtonState();
-  //toggleButtonState([placeName, placeLink], buttonElement, errorList); //когда закрываем попап блокируем кнопку
+  validFormElements._toggleButtonState(); //когда закрываем попап блокируем кнопку
   closePopup(popupWAddElements);
 };
 
@@ -99,10 +95,13 @@ function changeProfileInfo(evt) {
 const renderCard = (item) => {
   const card = new Card(item, '#plase-template');
   const cardElement = card.createCard();
-  document.querySelector('.elements').prepend(cardElement);
+  return cardElement;
+  /* document.querySelector('.elements').prepend(cardElement); */
 };
 
-initialCards.forEach(renderCard);
+initialCards.forEach((element) => {
+  document.querySelector('.elements').prepend(renderCard(element));
+});
 
 // создаем объект класса валидации для проверки формы профайла пользователя
 const validFormProfile = new FormValidator(errorList, popupFormProfile);
