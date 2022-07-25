@@ -21,10 +21,11 @@ export class Card {
     // заполняем шаблон
     createCard() {
       this._element = this._getTemplate();
+      this._image = this._element.querySelector('.elements__image');
       
       this._element.querySelector('.elements__name').textContent = this._name;
-      this._element.querySelector('.elements__image').src = this._link;
-      this._element.querySelector('.elements__image').alt = this._name;
+      this._image.src = this._link;
+      this._image.alt = this._name;
       this._setEventListeners();
   
       return this._element;
@@ -49,7 +50,8 @@ export class Card {
   
     // Удаление карточки
     _removeCard(){
-      this._element.querySelector('.elements__delete').closest('.elements__container').remove();
+      this._element.closest('.elements__container').remove(); // Метод remove удалит только разметку
+      this._element = null; // зануляем объект с данными
     }
   
     // Просмотр фото карточки
