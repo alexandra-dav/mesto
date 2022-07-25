@@ -1,5 +1,6 @@
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
+import { initialCards, errorList } from './data.js';
 
 const popupWProfile = document.querySelector('#edit_profile');
 const buttonEditPropile = document.querySelector('.profile__edit-name');
@@ -55,7 +56,7 @@ export function openPopup(e) {
 function addDataProfile() {
   popupName.value = profileName.textContent;
   popupJob.value = profileOccupation.textContent;
-  const validFormProfile = new FormValidator(errorList, popupFormProfile);
+  //const validFormProfile = new FormValidator(errorList, popupFormProfile);
   validFormProfile._toggleButtonState();
   //const buttonElement = popupWProfile.querySelector('.popup__button'); // находим кнопку
   //toggleButtonState([popupName, popupJob], buttonElement, errorList); //когда закрываем попап блокируем кнопку
@@ -76,14 +77,14 @@ function addElementPlase(evt) {
     link: placeLink.value
   });
   evt.target.reset();
-  const validFormElements = new FormValidator(errorList, popupFormElements);
-  validFormElements.enableValidation();
+  //const validFormElements = new FormValidator(errorList, popupFormElements);
+  validFormElements._toggleButtonState();
   //toggleButtonState([placeName, placeLink], buttonElement, errorList); //когда закрываем попап блокируем кнопку
   closePopup(popupWAddElements);
 };
 
 // Изменение данных в профиле
-function formSubmitHandler(evt) {
+function changeProfileInfo(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Получите значение полей jobInput и nameInput из свойства value
   const jobInput = popupJob.value;
@@ -103,28 +104,32 @@ const renderCard = (item) => {
 
 initialCards.forEach(renderCard);
 
+// создаем объект класса валидации для проверки формы профайла пользователя
+const validFormProfile = new FormValidator(errorList, popupFormProfile);
+validFormProfile.enableValidation();
+
 /* Добавление модификатора при открытии попапа */
 buttonEditPropile.addEventListener('click', () => {
   openPopup(popupWProfile);
-  const validFormProfile = new FormValidator(errorList, popupFormProfile);
-  validFormProfile.enableValidation();
-/*   hideInputError(popupFormProfile, popupName, errorList);
-  hideInputError(popupFormProfile, popupJob, errorList); */
+  validFormProfile._hideInputError(popupName);
+  validFormProfile._hideInputError(popupJob);
   addDataProfile();
 });
 
+// создаем объект класса валидации для проверки формы создания карточек
+const validFormElements = new FormValidator(errorList, popupFormElements);
+validFormElements.enableValidation();
+
 buttonAddPlace.addEventListener('click', () => {
   popupFormElements.reset();
-  const validFormElements = new FormValidator(errorList, popupFormElements);
-  validFormElements.enableValidation();
-/*   checkInputValidity(popupFormElements, placeName, errorList);
-  checkInputValidity(popupFormElements, placeLink, errorList); */
+  validFormElements._hideInputError(placeName);
+  validFormElements._hideInputError(placeLink);
   openPopup(popupWAddElements);
 });
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-popupFormProfile.addEventListener('submit', formSubmitHandler);
+popupFormProfile.addEventListener('submit', changeProfileInfo);
 popupFormElements.addEventListener('submit', addElementPlase);
 
 /* Удаление модификатора при закрытии попапа различными способами */
