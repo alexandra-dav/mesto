@@ -12,7 +12,7 @@ const popupName = popupFormProfile.elements.popupName;
 const popupJob = popupFormProfile.elements.popupJob;
 const buttonCloseProfile = document.querySelector('.popup__close_window_profile');
 
-
+const elementsPlace = document.querySelector('.elements');
 const popupWAddElements = document.querySelector('#add_elements');
 const buttonAddPlace = document.querySelector('.profile__add');
 const buttonCloseAddElements = popupWAddElements.querySelector('.popup__close_window_elements');
@@ -73,7 +73,7 @@ function addElementPlase(evt) {
     name: placeName.value,
     link: placeLink.value
   });
-  document.querySelector('.elements').prepend(cardElement);
+  elementsPlace.prepend(cardElement);
   evt.target.reset();
   validFormElements._toggleButtonState(); //когда закрываем попап блокируем кнопку
   closePopup(popupWAddElements);
@@ -96,11 +96,10 @@ const renderCard = (item) => {
   const card = new Card(item, '#plase-template');
   const cardElement = card.createCard();
   return cardElement;
-  /* document.querySelector('.elements').prepend(cardElement); */
 };
 
 initialCards.forEach((element) => {
-  document.querySelector('.elements').prepend(renderCard(element));
+  elementsPlace.prepend(renderCard(element));
 });
 
 // создаем объект класса валидации для проверки формы профайла пользователя
