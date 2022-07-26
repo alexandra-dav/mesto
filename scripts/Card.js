@@ -50,7 +50,7 @@ export class Card {
   
     // Удаление карточки
     _removeCard(){
-      this._element.closest('.elements__container').remove(); // Метод remove удалит только разметку
+      this._element.remove(); // Метод remove удалит только разметку
       this._element = null; // зануляем объект с данными
     }
   
