@@ -134,3 +134,4 @@ popupFormElements.addEventListener('submit', addElementPlase);
 buttonCloseProfile.addEventListener('click', () => {closePopup(popupWProfile)});
 buttonCloseAddElements.addEventListener('click', () => {closePopup(popupWAddElements);});
 buttonClosePhoto.addEventListener('click', () => {closePopup(popupWPhoto)});
+console.log('Hello, World!');
