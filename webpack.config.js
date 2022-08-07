@@ -1,4 +1,6 @@
 const path = require('path'); // подключаем path к конфигу вебпак
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // подключите плагин для работы с html
+const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // подключили плагин для очистки содержимого папки dist
 
 module.exports = {
   entry: { main: './src/index.js' },
@@ -27,5 +29,11 @@ module.exports = {
         exclude: '/node_modules/'
       }
       ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html' // путь к файлу index.html
+    }),
+    new CleanWebpackPlugin(), // очистка dist
+  ]
 }
