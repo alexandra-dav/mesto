@@ -41,8 +41,17 @@ module.exports = {
         // при обработке этих файлов нужно использовать
         // MiniCssExtractPlugin.loader и css-loader
         use: [MiniCssExtractPlugin.loader, {
-          loader: 'css-loader'
-        }]
+          loader: 'css-loader',
+          // Если вы используете директиву @import в css-файлах, 
+          // после подключения postcss-loader, нужно изменить то, как подключается css-loader.
+          // нужно в конце css-loader необходимо передать опцию importLoaders: 1
+          // Значение 1 говорит о том, что некоторые трансформации PostCSS нужно применить до css-loader
+          options: {
+            importLoaders: 1 
+          } 
+        },
+        'postcss-loader'
+        ]
       }
     ]
   },
