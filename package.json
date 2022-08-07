@@ -1,18 +1,17 @@
 {
-  "name": "mesto",
-  "private": true,
+  "name": "praktikum_mesto",
   "version": "0.0.1",
-  "description": "",
+  "description": "### Обзор",
   "main": "index.js",
   "scripts": {
     "build": "rm -rf dist && webpack --mode production",
-    "dev": "webpack serve --mode development --open"
+    "dev": "webpack serve --mode development"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alexandra-dav/mesto.git"
   },
-  "author": "Alexandra",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/alexandra-dav/mesto/issues"
