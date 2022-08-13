@@ -1,4 +1,4 @@
-export default class UserInfo {
+export class UserInfo {
   constructor(userData) {
     this._name = userData.name.value;
     this._info = userData.info.value;
@@ -16,8 +16,8 @@ export default class UserInfo {
 
   // принимает новые данные пользователя 
   // и добавляет их на страницу.
-  setUserInfo({ newName, newInfo }) {
-    this._name = newName.value;
-    this._info = newInfo.value;
+  setUserInfo({ newData }) {
+    this._name = newData.name.value;
+    this._info = newData.info.value;
   }
 }

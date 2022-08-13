@@ -1,7 +1,7 @@
 import Popup from "./Popup.js";
 import { changeMyName, changeMyLink } from "./index.js";
 
-export default class PopupWithImage extends Popup {
+export class PopupWithImage extends Popup {
   constructor(popupSelector, name, link) {
     super(popupSelector);
     this._name = name;
