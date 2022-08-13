@@ -39,7 +39,7 @@ export class Card {
         this._removeCard();
       });
       this._element.querySelector('.elements__image').addEventListener('click', () => {
-        this._viewPhoto();
+        this._handleCardClick();
       });
     }
     
@@ -55,7 +55,7 @@ export class Card {
     }
   
     // Просмотр фото карточки
-    _viewPhoto(){
+    _handleCardClick(){
       changeMyName.textContent = this._name;
       changeMyLink.src = this._link;
       changeMyLink.alt = this._name;

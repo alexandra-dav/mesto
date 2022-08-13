@@ -1,5 +1,10 @@
 import './styles/index.css'; // импорт главного файла стилей 
 import { Card } from './Card.js';
+//import { Section } from './Section.js';
+//import { Popup } from './Popup.js';
+import { PopupWithForm } from './PopupWithForm.js';
+//import { PopupWithImage } from './PopupWithImage.js';
+import { UserInfo } from './UserInfo.js';
 import { FormValidator } from './FormValidator.js';
 import { initialCards, errorList } from './data.js';
 
@@ -11,12 +16,11 @@ const popupFormProfile = document.forms.popupFormProfile;
 // Выберите элементы, куда должны быть вставлены значения полей
 const popupName = popupFormProfile.elements.popupName;
 const popupJob = popupFormProfile.elements.popupJob;
-const buttonCloseProfile = document.querySelector('.popup__close_window_profile');
 
 const elementsPlace = document.querySelector('.elements');
 const popupWAddElements = document.querySelector('#add_elements');
 const buttonAddPlace = document.querySelector('.profile__add');
-const buttonCloseAddElements = popupWAddElements.querySelector('.popup__close_window_elements');
+
 const popupFormElements = document.forms.popupFormElements;
 // Берем данные из попапа
 const placeName = popupFormElements.elements.popupPlase;
@@ -25,9 +29,21 @@ const placeLink = popupFormElements.elements.popupLink;
 export const popupWPhoto = document.querySelector('#view_photo');
 export const changeMyName = popupWPhoto.querySelector('.photo__caption');
 export const changeMyLink = popupWPhoto.querySelector('.photo__image');
-const buttonClosePhoto = popupWPhoto.querySelector('.popup__close_window_photo');
+
 
 const buttonElement = popupWAddElements.querySelector('.popup__button'); // находим кнопку
+
+const userInfo = new UserInfo({
+  name: popupName,
+  info: popupJob
+});
+
+const userPopup = new PopupWithForm("#edit_profile", {
+  handleFormSubmit: (inputData) => {
+    userInfo.setUserInfo(inputData);
+  },
+});
+userPopup.setEventListeners();
 
 //Закрыть попап на нажатию Escape
 const clickEscape = (e) => {
@@ -51,6 +67,7 @@ export function openPopup(e) {
   e.classList.add('popup_opened');
   document.addEventListener('keydown', clickEscape);
   e.addEventListener('click', clickOverlay);
+  buttonClose.addEventListener('click', closePopup(e));
 };
 
 // Подтягивание значений полей в попап при открытии
@@ -65,6 +82,7 @@ function closePopup(thisPopup) {
   thisPopup.classList.remove('popup_opened');
   document.removeEventListener('keydown', clickEscape); // снять слушатель
   thisPopup.removeEventListener('click', clickOverlay);
+  buttonClose.removeEventListener('click', (e) => {closePopup(e)});
 };
 
 // Добавление новой карточки
@@ -130,15 +148,3 @@ buttonAddPlace.addEventListener('click', () => {
 // он будет следить за событием “submit” - «отправка»
 popupFormProfile.addEventListener('submit', changeProfileInfo);
 popupFormElements.addEventListener('submit', addElementPlase);
-
-/* Удаление модификатора при закрытии попапа различными способами */
-buttonCloseProfile.addEventListener('click', () => {closePopup(popupWProfile)});
-buttonCloseAddElements.addEventListener('click', () => {closePopup(popupWAddElements);});
-buttonClosePhoto.addEventListener('click', () => {closePopup(popupWPhoto)});
-
-const numbers = [2, 3, 5];
-
-// Стрелочная функция. Не запнётся ли на ней Internet Explorer?
-const doubledNumbers = numbers.map(number => number * 2);
-
-console.log(doubledNumbers); // 4, 6, 10
