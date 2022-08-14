@@ -38,7 +38,7 @@ const userInfo = new UserInfo({
   info: popupJob
 });
 
-const userPopup = new PopupWithForm("#edit_profile", {
+const userPopup = new PopupWithForm(".popup_profile", {
   handleFormSubmit: (inputData) => {
     userInfo.setUserInfo(inputData);
   },

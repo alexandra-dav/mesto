@@ -16,7 +16,7 @@ export class UserInfo {
 
   // принимает новые данные пользователя 
   // и добавляет их на страницу.
-  setUserInfo({ newData }) {
+  setUserInfo(newData) {
     this._name = newData.name.value;
     this._info = newData.info.value;
   }
