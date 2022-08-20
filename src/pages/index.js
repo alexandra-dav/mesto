@@ -65,7 +65,7 @@ buttonEditPropile.addEventListener("click", () => {
 const cardImagePopup = new PopupWithImage(".popup_photo");
 cardImagePopup.setEventListeners();
 
-// Создание карточки
+// Создание новой карточки
 const createNewCard = (item) => {
   const card = new Card({
     arrey: item,
@@ -76,6 +76,7 @@ const createNewCard = (item) => {
   return card.createCard();
 };
 
+// Добавление новых карточек из списка initialCards
 const cardList = new Section({
   items: initialCards,
   renderer: (item) => {
@@ -86,15 +87,11 @@ const cardList = new Section({
 
 cardList.renderItems();
 
-
-
-
-
 // создаем объект класса валидации для проверки формы создания карточек
 const validFormElements = new FormValidator(errorList, popupFormElements);
 validFormElements.enableValidation();
 
-// Добавление Нового Места
+// Добавление новой карточки из данных из попапа
 const createSample = new PopupWithForm({
   popupSelector: ".popup_elements",
   submitForm: (data) => {
