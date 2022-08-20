@@ -1,10 +1,11 @@
-import {popupWPhoto, changeMyName, changeMyLink, openPopup} from './index.js';
+import {popupWPhoto, changeMyName, changeMyLink, openPopup} from '../pages/index.js';
 export class Card {
     // конструктор класса 
-    constructor(arrey, selector){
+    constructor({arrey, handleCardClick}, selector){
       this._name = arrey.name;
       this._link = arrey.link;
       this._templateSelector = selector;
+      this.handleCardClick = handleCardClick;
     }
   
     // получаем шаблон разметки карточки
@@ -39,7 +40,7 @@ export class Card {
         this._removeCard();
       });
       this._element.querySelector('.elements__image').addEventListener('click', () => {
-        this._handleCardClick();
+        this._imagePhoto();
       });
     }
     
@@ -55,10 +56,12 @@ export class Card {
     }
   
     // Просмотр фото карточки
-    _handleCardClick(){
-      changeMyName.textContent = this._name;
-      changeMyLink.src = this._link;
-      changeMyLink.alt = this._name;
-      openPopup(popupWPhoto);
+    _imagePhoto(){
+      this._image.addEventListener("click", () => {
+        this.handleCardClick({ 
+          name: this._name,
+          link: this.link 
+        });
+      });
     }
   }

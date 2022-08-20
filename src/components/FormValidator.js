@@ -60,4 +60,12 @@ export class FormValidator {
       return !inputElement.validity.valid;
     });
   }
+
+  // когда первый раз открываем попап профиля нужно спрятать валидационные сообщения
+  resetValidation() {
+    this._toggleButtonState();
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  }
 }
