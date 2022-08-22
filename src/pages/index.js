@@ -6,27 +6,14 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { initialCards, errorList } from '../utils/data.js';
-
-const popupWProfile = document.querySelector('#edit_profile');
-const buttonEditPropile = document.querySelector('.profile__edit-name');
-const popupFormProfile = document.forms.popupFormProfile;
-// Выберите элементы, куда должны быть вставлены значения полей
-const popupNameOpen = popupFormProfile.elements.popupName;
-const popupJobOpen = popupFormProfile.elements.popupJob;
-
-const popupWAddElements = document.querySelector('#add_elements');
-const buttonAddPlace = document.querySelector('.profile__add');
-
-const popupFormElements = document.forms.popupFormElements;
-// Берем данные из попапа
-const placeName = popupFormElements.elements.popupPlase;
-const placeLink = popupFormElements.elements.popupLink;
-
-export const popupWPhoto = document.querySelector('#view_photo');
-export const changeMyName = popupWPhoto.querySelector('.photo__caption');
-export const changeMyLink = popupWPhoto.querySelector('.photo__image');
-
-const buttonElement = popupWAddElements.querySelector('.popup__button'); // находим кнопку
+import {
+  buttonEditPropile,
+  popupFormProfile,
+  popupNameOpen,
+  popupJobOpen,
+  buttonAddPlace,
+  popupFormElements
+} from '../utils/data.js';
 
 // то что мы видим в профайле
 const userInfo = new UserInfo({ 

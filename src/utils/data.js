@@ -36,3 +36,12 @@ export const errorList = {
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__error_visible'
 }
+
+export const buttonEditPropile = document.querySelector('.profile__edit-name');
+export const popupFormProfile = document.forms.popupFormProfile;
+// Выберите элементы, куда должны быть вставлены значения полей
+export const popupNameOpen = popupFormProfile.elements.popupName;
+export const popupJobOpen = popupFormProfile.elements.popupJob;
+
+export const buttonAddPlace = document.querySelector('.profile__add');
+export const popupFormElements = document.forms.popupFormElements;
