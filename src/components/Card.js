@@ -10,13 +10,11 @@ export class Card {
   
     // получаем шаблон разметки карточки
     _getTemplate() {
-      const cardElement = document
-      .querySelector(this._templateSelector)
-      .content
-      .querySelector('.elements__container')
-      .cloneNode(true);
-  
-      return cardElement;
+      return document
+        .querySelector(this._templateSelector)
+        .content
+        .querySelector('.elements__container')
+        .cloneNode(true);
     }
   
     // заполняем шаблон

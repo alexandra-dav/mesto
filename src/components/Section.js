@@ -7,7 +7,7 @@ export class Section {
 
   // Метод, отвечающий за отрисовку всех элементов
   renderItems() {// отрисовка одного эллемента
-    this._items.forEach(this._renderer.bind(this));
+    this._items.forEach(this._renderer);
   }
 
   // метод принимает DOM-элемент и добавляет его в контейнер

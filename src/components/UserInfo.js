@@ -1,7 +1,7 @@
 export class UserInfo {
   constructor({ infoNameSelector, infoJobSelector }) {
-    this._popupName = infoNameSelector;
-    this._popupJob = infoJobSelector; 
+    this._popupName = document.querySelector(infoNameSelector);
+    this._popupJob = document.querySelector(infoJobSelector); 
   }
 
   // возвращает объект с данными пользователя

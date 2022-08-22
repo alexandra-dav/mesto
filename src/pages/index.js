@@ -5,12 +5,10 @@ import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { FormValidator } from '../components/FormValidator.js';
-import { initialCards, errorList } from '../data.js';
+import { initialCards, errorList } from '../utils/data.js';
 
 const popupWProfile = document.querySelector('#edit_profile');
 const buttonEditPropile = document.querySelector('.profile__edit-name');
-const profileName = document.querySelector('.profile__name');
-const profileOccupation = document.querySelector('.profile__occupation');
 const popupFormProfile = document.forms.popupFormProfile;
 // Выберите элементы, куда должны быть вставлены значения полей
 const popupNameOpen = popupFormProfile.elements.popupName;
@@ -32,8 +30,8 @@ const buttonElement = popupWAddElements.querySelector('.popup__button'); // на
 
 // то что мы видим в профайле
 const userInfo = new UserInfo({ 
-  infoNameSelector: profileName, // h1, p in profile
-  infoJobSelector: profileOccupation
+  infoNameSelector: '.profile__name', // h1, p in profile
+  infoJobSelector: '.profile__occupation'
 });
 
 const setInfo = () => {
@@ -95,11 +93,7 @@ validFormElements.enableValidation();
 const createSample = new PopupWithForm({
   popupSelector: ".popup_elements",
   submitForm: (data) => {
-    console.log(data);
-    const cardObj = {};
-    cardObj.name = data.popupPlase;
-    cardObj.link = data.popupLink;
-    const cardElement = createNewCard(cardObj);
+    const cardElement = createNewCard(data);
     cardList.addItem(cardElement);
     createSample.close();
   }
