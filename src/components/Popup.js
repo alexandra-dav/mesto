@@ -15,10 +15,10 @@ export default class Popup {
   }
 
   _handleEscClose(evt){
-          if (evt.key === 'Escape') {
-            this.close();
-          }
-        }
+    if (evt.key === 'Escape') {
+      this.close();
+    }
+  }
   
   setEventListeners(){
     this._element.addEventListener('mousedown', (evt) => {

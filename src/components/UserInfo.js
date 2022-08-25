@@ -22,12 +22,12 @@ export class UserInfo {
   setUserInfo(data) {
     this._popupName.textContent = data.name;
     this._popupJob.textContent = data.about;
-    this._api.patchUserInfo({ name: this._popupName.textContent, about: this._popupJob.textContent });
+    //this._api.patchUserInfo({ name: this._popupName.textContent, about: this._popupJob.textContent });
   }
 
   // для изменения аватара пользоватля
   setUserAvatar(data) {
     this._popupAvatar.src = data.avatar;
-    this._api.patchUserAvatar(this._popupAvatar.src);
+    //this._api.patchUserAvatar(this._popupAvatar.src);
   }
 }

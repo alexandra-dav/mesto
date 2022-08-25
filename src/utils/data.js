@@ -42,6 +42,10 @@ export const popupFormProfile = document.forms.popupFormProfile;
 // Выберите элементы, куда должны быть вставлены значения полей
 export const popupNameOpen = popupFormProfile.elements.popupName;
 export const popupJobOpen = popupFormProfile.elements.popupJob;
+export const buttonEditAvatar = document.querySelector('.profile__edit-avatar');
+export const popupFormAvatar = document.forms.popupFormAvatar;
+export const popupAvatarOpen = popupFormAvatar.elements.popupAvatar;
 
 export const buttonAddPlace = document.querySelector('.profile__add');
 export const popupFormElements = document.forms.popupFormElements;
+export const buttonDeleteCard = document.querySelector('#delete_card_popup');
