@@ -17,8 +17,7 @@ import {
   popupFormElements,
   buttonEditAvatar,
   popupAvatarOpen,
-  popupFormAvatar,
-  buttonDeleteCard
+  popupFormAvatar
 } from '../utils/data.js';
 
 const api = new Api({
@@ -56,27 +55,26 @@ const userInfo = new UserInfo({
 }, api);
 
 // Изменение аватара пользователя
-const editAvatar = new PopupWithForm({
+const avatarEdit = new PopupWithForm({
   popupSelector: ".popup_avatar",
   submitForm: (data) => {
     api.patchUserAvatar({ avatar: data.link })
     .then(() => {
       userInfo.setUserAvatar({ avatar: data.link });
-      editAvatar.close();
+      avatarEdit.close();
     })
     .catch((err) => {
       console.log(err)
     })
     .finally(() => {
-      editAvatar.loadText(false, 'Сохранить');
+      avatarEdit.loadText(false);
     });
   }
 });
-editAvatar.setEventListeners();
-buttonEditAvatar.addEventListener("click", function (evt) {
-  setAvatar();
+avatarEdit.setEventListeners();
+buttonEditAvatar.addEventListener("click", function () {
   validFormAvatar.resetValidation();
-  editAvatar.open();
+  avatarEdit.open();
 });
 
 // Изменение данных пользователя
@@ -92,7 +90,7 @@ const profileSample = new PopupWithForm({
       console.log(err)
     })
     .finally(() => {
-      profileSample.loadText(false, 'Сохранить');
+      profileSample.loadText(false);
     });
   }
 });
@@ -116,7 +114,7 @@ const createSample = new PopupWithForm({
       })
       .catch((err) => console.log(err))
       .finally(() => {
-        profileSample.loadText(false, 'Создать');
+        profileSample.loadText(false);
       });
   }
 }, api);
@@ -130,36 +128,43 @@ buttonAddPlace.addEventListener("click", function (evt) {
 const createNewCard = (item) => {
   const card = new Card({
     arrey: item,
-    api,
     userId,
     handleCardClick: () => {
       cardImagePopup.open(item);
     },
-    likeHandleClick: () => {
-      card.handleLikeCard();
+    likeHandleClick: (likeCondition, thisCardId, likeToClik) => {
+      if(likeCondition){
+        api.deleteLikeCard(thisCardId)
+          .then((data) => {
+            likeToClik(data.likes);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      } else {
+        api.putLikeCard(thisCardId)
+        .then((data) => {
+          likeToClik(data.likes);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+      }
     },
-    openPopapDeleteThisCard: () => {
-      deleteCardPopap.open();
-      buttonDeleteCard.addEventListener("click", function (evt) {
-        api.deleteCard(item._id)
+    openPopapDeleteThisCard: (thisCard, thisCardId) => {
+      deleteCardPopap.open(() => {
+        api.deleteCard(thisCardId)
           .then( () => {
-          card.removeCard();
-        })
-      .catch((err) => console.log(err));
-
-      buttonDeleteCard.removeEventListener("click", function (evt) {
-        api.deleteCard(item._id)
-          .then( () => {
-          card.removeCard();
-        })
-      .catch((err) => console.log(err));
+            thisCard.removeCard();
+          })
+          .catch((err) => console.log(err));
       });
-      deleteCardPopap.close();
-    });
     }
   }, '#plase-template');
   return card.createCard();
 };
+
+// создать метод для отслеживания лайков
 
 
 const setInfo = () => {

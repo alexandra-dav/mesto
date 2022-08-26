@@ -1,13 +1,13 @@
 export class Card {
     // конструктор класса 
-    constructor({ arrey, api, userId, handleCardClick, likeHandleClick, openPopapDeleteThisCard }, selector){
-      this._name = arrey.name;
-      this._link = arrey.link;
-      this._likes = arrey.likes;
-      this._count = arrey.likes.length;
-      this._cardId = arrey._id;
-      this._ownerId = arrey.owner._id;
-      this._api = api;
+    constructor({ arrey, userId, handleCardClick, likeHandleClick, openPopapDeleteThisCard }, selector){
+      this.data = arrey;
+      this._name = this.data.name;
+      this._link = this.data.link;
+      this._likes = this.data.likes;
+      this._count = this.data.likes.length;
+      this._cardId = this.data._id;
+      this._ownerId = this.data.owner._id;
       this._userId = userId;
       this._templateSelector = selector;
       this.handleCardClick = handleCardClick;
@@ -35,8 +35,12 @@ export class Card {
 
       this._favoriteButton = this._element.querySelector(".elements__favorit");
       this._countLikes = this._element.querySelector(".elements__like-count");
-      this._countLikes.textContent = this._count; // изначально показать сколько лайков
+      this._updateLikesView();
+      //this._favoriteButton.classList.toggle('elements__favorit_active', this.isLiked());
+      //this._countLikes.textContent = this._count; // изначально показать сколько лайков
       this._deleteButton = this._element.querySelector(".elements__delete");
+
+      this.isLike = this.isLiked();
 
       // Прячем кнопку удаления карты у карточек, которые мы не создавали
       if (this._ownerId !== this._userId) {
@@ -48,13 +52,20 @@ export class Card {
       return this._element;
     }
     
+    isLiked() {
+      return this._likes.some((like) => like._id === this._userId);
+    }
+
     _setEventListeners() {
-      this._element.querySelector('.elements__favorit').addEventListener('click', () => {
-        this.handleLikeCard();
+      this._favoriteButton.addEventListener('click', () => {
+        this._likeHandleClick(this.isLike, this._cardId, (data) => {
+          this.updateLikes(data);
+          this.isLike = this.isLiked();
+        });
       });
 
       this._deleteButton.addEventListener('click', () => {
-        this._openPopapDelete();
+        this._openPopapDelete(this, this._cardId);
       });
       this._element.querySelector('.elements__image').addEventListener('click', () => {
         this._imagePhoto();
@@ -79,25 +90,18 @@ export class Card {
     }
 
     // Отметить или убрать лайк
-    handleLikeCard() {
-      if(this._favoriteButton.classList.contains('elements__favorit_active')) {
-        this._api.deleteLikeCard(this._cardId)
-          .then((data) => {
-            this._favoriteButton.classList.remove('elements__favorit_active');
-            this._countLikes.textContent = data.likes.length;
-          })
-          .catch((err) => {
-            console.log(err);
-          })
-      } else {
-        this._api.putLikeCard(this._cardId)
-          .then((data) => {
-            this._favoriteButton.classList.add('elements__favorit_active');
-            this._countLikes.textContent = data.likes.length;
-          })
-          .catch((err) => {
-            console.log(err)
-          })
-      }
+
+
+    // метод для обновления всей информации о лайках, состояние и количество
+    _updateLikesView() {
+      this._count = this._likes.length;
+      this._countLikes.textContent = this._count;
+      this._favoriteButton.classList.toggle('elements__favorit_active', this.isLiked());
+    } 
+
+    // пересчет лайков
+    updateLikes(newDataAboutLikes) {
+      this._likes = newDataAboutLikes;
+      this._updateLikesView();
     }
   }

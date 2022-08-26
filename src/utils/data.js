@@ -48,4 +48,3 @@ export const popupAvatarOpen = popupFormAvatar.elements.popupAvatar;
 
 export const buttonAddPlace = document.querySelector('.profile__add');
 export const popupFormElements = document.forms.popupFormElements;
-export const buttonDeleteCard = document.querySelector('#delete_card_popup');

@@ -5,18 +5,19 @@ export class Api {
     this._headers = config.headers;
   }
 
+  _getResponseData(res) {
+    if (!res.ok) {
+      return Promise.reject(`Ошибка: ${res.status}`); 
+    }
+    return res.json();
+  }
+  
   // Загрузка карточек с сервера +
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       headers: this._headers
     })
-      .then((res) => {
-        if(res.ok){
-          return res.json();
-        }
-        
-        throw new Error('Некоррктные данные'); // не обрабатывать ошибки в апи
-      });
+      .then(this._getResponseData);
     /* Результат запроса: 
   [
     {
@@ -60,13 +61,7 @@ export class Api {
         link: item.link
       })
     })
-    .then((res) => {
-      if(res.ok){
-        return res.json();
-      }
-      
-      throw new Error('Невозможно создать карточку из данных');
-    });
+    .then(this._getResponseData);
   }
 
   // Удаление карточки +
@@ -75,13 +70,7 @@ export class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then((res) => {
-      if(res.ok){
-        return res.json();
-      }
-      
-      throw new Error('Невозможно удалить данную карточку');
-    });
+    .then(this._getResponseData);
   }
   
   // Постановка лайка +
@@ -90,13 +79,7 @@ export class Api {
       method: 'PUT',
       headers: this._headers
     })
-    .then((res) => {
-      if(res.ok){
-        return res.json();
-      }
-      
-      throw new Error('Невозможно применить putLikeCard');
-    });
+    .then(this._getResponseData);
   }
 
   // Снятие лайка +
@@ -105,13 +88,7 @@ export class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then((res) => {
-      if(res.ok){
-        return res.json();
-      }
-      
-      throw new Error('Невозможно применить putLikeCard');
-    });
+    .then(this._getResponseData);
   }
 
   // Загрузка информации о пользователе с сервера +
@@ -119,13 +96,7 @@ export class Api {
     return fetch(`${this._url}/users/me`, {
         headers: this._headers
     })
-    .then((res) => {
-      if(res.ok){
-        return res.json();
-      }
-      
-      throw new Error('Некоррктные данные'); // не обрабатывать ошибки в апи
-    });
+    .then(this._getResponseData);
   
   /*  Результат запроса: 
   {
@@ -149,13 +120,7 @@ export class Api {
         about: UserDataProfile.about
       })
     })
-    .then((res) => {
-      if(res.ok){
-        return res.json();
-      }
-      
-      throw new Error('Некоррктные данные');
-    });
+    .then(this._getResponseData);
   /* Если обновление прошло успешно, в теле ответа от сервера вы получите обновлённые данные пользователя:
   {
     "name": "Marie Skłodowska Curie",
@@ -175,13 +140,7 @@ export class Api {
         avatar: avatar
       })
     })
-    .then((res) => {
-      if(res.ok){
-        return res.json();
-      }
-      
-      throw new Error('Некоррктные данные');
-    });
+    .then(this._getResponseData);
   }
 }
 
