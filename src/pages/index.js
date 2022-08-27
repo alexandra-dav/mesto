@@ -114,7 +114,7 @@ const createSample = new PopupWithForm({
       })
       .catch((err) => console.log(err))
       .finally(() => {
-        profileSample.loadText(false);
+        createSample.loadText(false);
       });
   }
 }, api);
