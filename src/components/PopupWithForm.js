@@ -38,7 +38,6 @@ export class PopupWithForm extends Popup {
   }
 
   loadText(loadIs) {
-    console.log(this._buttonValue);
     if (loadIs) {
       this._submitButton.textContent = this._textButton;
     }
