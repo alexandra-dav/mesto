@@ -52,7 +52,7 @@ const userInfo = new UserInfo({
   infoNameSelector: '.profile__name', // h1, p in profile
   infoJobSelector: '.profile__occupation',
   infoImageSelector: '.profile__image'
-}, api);
+});
 
 // Изменение аватара пользователя
 const avatarEdit = new PopupWithForm({

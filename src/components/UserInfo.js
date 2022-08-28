@@ -1,11 +1,10 @@
 //import { Api } from "./Api";
 
 export class UserInfo {
-  constructor({ infoNameSelector, infoJobSelector, infoImageSelector }, api) {
+  constructor({ infoNameSelector, infoJobSelector, infoImageSelector }) {
     this._popupName = document.querySelector(infoNameSelector);
     this._popupJob = document.querySelector(infoJobSelector);
     this._popupAvatar = document.querySelector(infoImageSelector);
-    this._api = api;
   }
 
   // возвращает объект с данными пользователя
@@ -22,12 +21,10 @@ export class UserInfo {
   setUserInfo(data) {
     this._popupName.textContent = data.name;
     this._popupJob.textContent = data.about;
-    //this._api.patchUserInfo({ name: this._popupName.textContent, about: this._popupJob.textContent });
   }
 
   // для изменения аватара пользоватля
   setUserAvatar(data) {
     this._popupAvatar.src = data.avatar;
-    //this._api.patchUserAvatar(this._popupAvatar.src);
   }
 }
